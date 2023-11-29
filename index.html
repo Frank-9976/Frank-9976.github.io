@@ -10,7 +10,20 @@
       };
     </script>
   </head>
-  <body style="font-family:monospace;font-size:2em">
-    hello world! $Z/2Z[x]$ is a wonderful integral domain :3
+  <body style="font-family:monospace;font-size:1.5em">
+    <h1>the balanced collatz problem [WIP]</h1>
+    <p>
+      The collatz problem needs no introduction because it is one of the most infamous problems in the history of mathematics.
+      It is so infamous, in fact, that I do not have much serious interest in solving it.
+      However, something I found interesting was the fundamental reason why we would <i>expect</i> every orbit to reach 1.
+      Let $\alpha = 3$ and $\beta = 2$. The collatz map can be written in this form:<br>
+      $f(r) = \begin{cases}
+      \frac{\alpha r + 1}{\beta} & r \equiv 1 \mod \beta \\
+      \frac{r}{\beta} & \text{otherwise}
+      \end{cases}$<br>
+      The choice to label the independent variable "r" is important because the goal will be to generalize this to specific types of rings, but I should not get ahead of myself.
+      The important thing to note is that we can model the "expected value" in change in valuation by assuming there is a $\frac{1}{2}$ chance that any given "even" number will become "odd" when divided by $\beta$.
+      If we valuate integers the natural way, i.e. absolute value, we get the following for odd r:
+    </p>
   </body>
 </html>
