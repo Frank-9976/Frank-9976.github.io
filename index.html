@@ -23,14 +23,12 @@
       \end{cases}$<br>
       The choice to label the independent variable "r" is important because the goal will be to generalize this to specific types of rings, but I should not get ahead of myself.
       The important thing to note is that we can model the "expected value" in change in valuation by assuming there is a $\frac{1}{2}$ chance that any given "even" number will become "odd" when divided by $\beta$.
-      However, the current form of the collatz map is inconvenient to our purposes. Let's define an auxiliary function to assist in a new definition:<br>
-      $[r] = \frac{r}{\beta^{v_\beta(r)}}$<br>
+      However, the current form of the collatz map is inconvenient to our purposes. Let's define an auxiliary function "[]" to assist in a new definition:<br>
+      $[r] = \frac{r}{\beta^n}$ where n is the largest integer such that $\beta^n \divides r$<br>
       $f(r) = [\alpha r + 1]$<br>
       This is often known as the "Syracuse" function. It is essentially the same as the collatz map but its image is odd numbers only; it skips past all the even iterations.
-      (Note that $v_\beta$ is the $\beta$-adic valuation function: it counts how many times you can divide $\beta$ from r before $\beta$ no longer divides r.
-      This is <i>not</i> the same as the valuation we will be using for the following heuristic.)
       Using the Syracuse form of the collatz map, we can model the expected valuation increase from one application of this map:<br>
-      $E = \sum_{n=1}^{\infty}$\frac{1}{2^n}\frac{$\alpha}{\beta^n} = \frac{\frac{\alpha}{2\beta}}{1 - \frac{1}{2\beta}}$
+      $E = \sum_{n=1}^{\infty}\frac{1}{2^n}\frac{$\alpha}{\beta^n} = \frac{\frac{\alpha}{2\beta}}{1 - \frac{1}{2\beta}}$
     </p>
   </body>
 </html>
