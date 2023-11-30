@@ -42,8 +42,13 @@
       $\alpha \notin (\beta)$<br><br>
       The first requirement guarantees that $\beta$ splits the ring into "odds" and "evens".
       The second requirement guarantees that $\beta \mid \alpha r + 1$.
-      However, it is impossible for $\mathbb{Z}$ because squares of 2 (or -2) must be even. So we must turn to other rings.
-      (In fact, they must be integral domains, because we want that there is a unique q such that if $r \in (\beta)$ then $r = \beta q$.)
+      However, given these conditions, it is impossible for $\mathbb{Z}$ to have a "balanced" collatz problem because squares of 2 (or -2) must be even.
+      (Note that by the condition on what $v$ should be given above, $2v(\beta) = v(\beta^2)$.)
+      So we must turn to other rings.
+      (In fact, they must be integral domains, because we want that there be a unique q such that if $r \in (\beta)$ then $r = \beta q$.
+      Otherwise division by $\beta$ is not well-defined.
+      Indeed, assume that there exist $q_1$ and $q_2$ such that the above equation holds.
+      Then $r - r = \beta (q_1 - q_2) = 0 and R being an integral domain proves that $q_1 = q_2$.)
     </p>
     <h2>another integral domain that fails to be balanced [TBD]</h2>
   </body>
