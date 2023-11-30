@@ -24,11 +24,13 @@
       The choice to label the independent variable "r" is important because the goal will be to generalize this to specific types of rings, but I should not get ahead of myself.
       The important thing to note is that we can model the "expected value" in change in valuation by assuming there is a $\frac{1}{2}$ chance that any given "even" number will become "odd" when divided by $\beta$.
       However, the current form of the collatz map is inconvenient to our purposes. Let's define an auxiliary function "[]" to assist in a new definition:<br>
-      $[r] = \frac{r}{\beta^n}$ where n is the largest integer such that $\beta^n \divides r$<br>
+      $[r] = \frac{r}{\beta^n}, n = \sup(\{n \mid \beta^n \vert r\})$<br>
       $f(r) = [\alpha r + 1]$<br>
       This is often known as the "Syracuse" function. It is essentially the same as the collatz map but its image is odd numbers only; it skips past all the even iterations.
       Using the Syracuse form of the collatz map, we can model the expected valuation increase from one application of this map:<br>
-      $E = \sum_{n=1}^{\infty}\frac{1}{2^n}\frac{$\alpha}{\beta^n} = \frac{\frac{\alpha}{2\beta}}{1 - \frac{1}{2\beta}}$
+      $E = \sum_{n=1}^{\infty}\frac{\alpha - n \beta}{2^n}$
+      Note that valuation here is assumed to be a function on $a,b \in R^{\noteq 0} \rightarrow \mathbb{R}$ which satisfies $v(ab) = v(a) + v(b)$.
+      For integers, $\log\|r\|$ works nicely, but we will extend this to other rings!
     </p>
   </body>
 </html>
