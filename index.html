@@ -32,10 +32,19 @@
       Note that valuation here is assumed to be a function on $a,b \in R^{\neq 0} \rightarrow \mathbb{R}$ which satisfies $v(ab) = v(a) + v(b)$.
       For integers, $\log\mid r\mid$ works nicely, but we can extend this to other rings! (Yet again, don't want to get ahead of myself.)
       Anyway, let's find an explicit formula for E:<br><br>
-      $ = \sum_{n=1}^{\infty}\frac{v(\alpha)}{2^n} - \sum_{n=1}^{\infty}\sum_{k=n}^{\infty}\frac{v(\beta)}{2^k} = v(\alpha) - \sum_{n=1}^{\infty}\frac{v(\beta)}{2^{n-1}} = v(\alpha) - v(2\beta)$<br><br>
-      Well, that's a nice formula if I ever saw one! Indeed, $\log(3/4) < 0$, so we expect the collatz conjecture to be true.
-      And this is where the title of this post comes from: this formula made me wonder: "can we have a <i>balanced</i> collatz problem such that E = 0?"
-      It turns out, we <i>can</i>!
+      $\sum_{n=1}^{\infty}\frac{v(\alpha) - n v(\beta)}{2^n}
+      = \sum_{n=1}^{\infty}\frac{v(\alpha)}{2^n} - \sum_{n=1}^{\infty}\sum_{k=n}^{\infty}\frac{v(\beta)}{2^k}
+      = v(\alpha) - \sum_{n=1}^{\infty}\frac{v(\beta)}{2^{n-1}} = v(\alpha) - 2v(\beta)$<br><br>
+      Well, that's a nice formula if I ever saw one! Indeed, $\log\mid\frac{3}{4}\mid &lt; 0$ so we expect the collatz conjecture to be true.
+      And this is where the title of this post comes from! This formula made me wonder: "can we have a <i>balanced</i> collatz problem such that E = 0?"
+      It turns out, we <i>can</i>! But not over $\mathbb{Z}$, because we must have two important requirements for $\alpha$ and $\beta$:<br><br>
+      $R/(\beta) \cong Z/2Z$<br>
+      $\alpha \notin (\beta)$<br><br>
+      The first requirement guarantees that $\beta$ splits the ring into "odds" and "evens".
+      The second requirement guarantees that $\beta \mid \alpha r + 1$.
+      However, it is impossible for $\mathbb{Z}$ because squares of 2 (or -2) must be even. So we must turn to other rings.
+      (In fact, they must be integral domains, because we want that there is a unique q such that if $r \in (\beta)$ then $r = \beta q$.)
     </p>
+    <h2>another integral domain that fails to be balanced [TBD]</h2>
   </body>
 </html>
