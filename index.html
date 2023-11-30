@@ -28,9 +28,14 @@
       $f(r) = [\alpha r + 1]$<br><br>
       This is often known as the "Syracuse" function. It is essentially the same as the collatz map but its image is odd numbers only; it skips past all the even iterations.
       Using the Syracuse form of the collatz map, we can model the expected valuation increase from one application of this map:<br><br>
-      $E = \sum_{n=1}^{\infty}\frac{\alpha - n \beta}{2^n}$<br><br>
+      $E = \sum_{n=1}^{\infty}\frac{v(\alpha) - n v(\beta)}{2^n}$<br><br>
       Note that valuation here is assumed to be a function on $a,b \in R^{\neq 0} \rightarrow \mathbb{R}$ which satisfies $v(ab) = v(a) + v(b)$.
-      For integers, $\log\mid r\mid$ works nicely, but we can extend this to other rings!
+      For integers, $\log\mid r\mid$ works nicely, but we can extend this to other rings! (Yet again, don't want to get ahead of myself.)
+      Anyway, let's find an explicit formula for E:<br><br>
+      $ = \sum_{n=1}^{\infty}\frac{v(\alpha)}{2^n} - \sum_{n=1}^{\infty}\sum_{k=n}^{\infty}\frac{v(\beta)}{2^k} = v(\alpha) - \sum_{n=1}^{\infty}\frac{v(\beta)}{2^{n-1}} = v(\alpha) - v(2\beta)$<br><br>
+      Well, that's a nice formula if I ever saw one! Indeed, $\log(3/4) < 0$, so we expect the collatz conjecture to be true.
+      And this is where the title of this post comes from: this formula made me wonder: "can we have a <i>balanced</i> collatz problem such that E = 0?"
+      It turns out, we <i>can</i>!
     </p>
   </body>
 </html>
