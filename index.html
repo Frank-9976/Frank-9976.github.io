@@ -55,13 +55,15 @@
       Indeed, assume that there exist $q_1$ and $q_2$ such that the above equation holds.
       Then $r - r = \beta (q_1 - q_2) = 0$ and R being an integral domain proves that $q_1 = q_2$.)
     </p>
-    <h2>another integral domain that fails to be balanced</h2>
+    <h2>another two integral domains that fail to be balanced</h2>
     <p>
       In general, it is not obvious whether a ring has a principle ideal $(\beta)$ such that $R/(\beta) \cong Z/2Z$.
       However, two examples of such rings are $Z[x]/(x^2+1)$ and $Z[x]/(x^2-2)$.
       (Note that both rings are integral domains because they are a quotient by a prime element of Z[x].)
       For the first ring, let $\beta = x + 1$.
-      This is allowed: in $Z[x]/(x^2+1)/(x+1)$, $(x - 1)(x + 1) = x^2 - 1 = -2 = 0$, so $x = 1$ follows and it is not hard to see that $Z[x]/(x^2+1)/(x+1) \cong Z/2Z$.
+      This is allowed: in $Z[x]/(x^2+1)/(x+1)$,<br><br>
+      $(x - 1)(x + 1) = x^2 - 1 = -2 = 0$<br><br>
+      so $x = 1$ follows and it is not hard to see that $Z[x]/(x^2+1)/(x+1) \cong Z/2Z$.
       Great! Let's define $v(r) = \log\mid r \mid$ again, using the norm of r as the "absolute value".
       Sadly, it is impossible to balance a collatz problem over this ring too.
       $2v(\beta) = 2\log(2) = \log(4)$, but there is no $\alpha \notin (\beta)$ such that $\mid \alpha \mid = 4$.
@@ -72,7 +74,7 @@
       We can define $v(r) = \log\mid r \mid$ yet again, but yet again we fail to make a balanced problem.
       $2v(\beta) = 2\log(\sqrt{2}) = \log(2)$, but there is no $\alpha \notin (\beta)$ such that $\mid \alpha \mid = 2$.
       The common thread here is that a number with twice the valuation as $\beta$ will always be divisble by $\beta$.
-      Should we lost all hope in a balanced collatz problem?
+      Should we lose all hope in a balanced collatz problem?
     </p>
     <h2>the integral domain that can be balanced</h2>
     <p>
