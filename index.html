@@ -14,7 +14,7 @@
     </script>
   </head>
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
-    <h1>the balanced collatz problem [unfinished psuedo-blogpost]</h1>
+    <h1>the balanced collatz problem [unfinished "blogpost"]</h1>
     <p>
       The collatz problem needs no introduction because it is one of the most infamous problems in the history of mathematics.
       It is so infamous, in fact, that I do not have much serious interest in solving it.
@@ -33,7 +33,7 @@
       Using the Syracuse form of the collatz map, we can model the expected valuation increase from one application of this map:<br><br>
       $E = \sum_{n=1}^{\infty}\frac{v(\alpha) - n v(\beta)}{2^n}$<br><br>
       Note that valuation here is assumed to be a function on $a,b \in R^{\neq 0} \rightarrow \mathbb{R}$ which satisfies $v(ab) = v(a) + v(b)$.
-      I am not sure what the general name of such a valuation is called, but if I must coin a name, it should be called a psuedo-logarithmic valuation.
+      I am not sure what the general name of such a valuation is called, but if I must coin a name, it should be called a pseudo-logarithmic valuation.
       It lets us measure the size of a non-zero element of a ring in a geometric-flavored way, which is precisely what I need.
       For integers, $v(r) = \log\mid r \mid$ works nicely, but we can extend this to other rings! (Yet again, don't want to get ahead of myself.)
       Anyway, let's find an explicit formula for E:<br><br>
@@ -73,7 +73,7 @@
       Amusingly, "even" numbers are just numbers with an even constant term, regardless of the coefficient next to x.
       We can define $v(r) = \log\mid r \mid$ yet again, but yet again we fail to make a balanced problem.
       $2v(\beta) = 2\log(\sqrt{2}) = \log(2)$, but there is no $\alpha \notin (\beta)$ such that $\mid \alpha \mid = 2$.
-      The common thread here is that a number with twice the valuation as $\beta$ will always be divisble by $\beta$.
+      The common thread here is that a number with twice the valuation as $\beta$ will always be divisible by $\beta$.
       Should we lose all hope in a balanced collatz problem?
     </p>
     <h2>the integral domain that can be balanced</h2>
@@ -85,8 +85,8 @@
       We can let $\beta = x$ and $v(x) = \deg(x)$.
       Firstly, it is obvious that $(Z/2Z)[x]/(x) \cong Z/2Z$.
       Secondly, this v does satisfy $v(ab) = v(a) + v(b)$.
-      Most importantly, we <i>can</i> balance around this particular psuedo-logarithmic valuation.
-      In fact, there is two ways: $\alpha = x^2 + 1$ and $\alpha = x^2 + x + 1$.<br><br>
+      Most importantly, we <i>can</i> balance around this particular pseudo-logarithmic valuation.
+      In fact, there are two ways: $\alpha = x^2 + 1$ and $\alpha = x^2 + x + 1$.<br><br>
       $E = v(\alpha) - 2v(\beta) = 2 - 2 * 1 = 0$<br><br>
       Indeed, all we need is that $\deg(\alpha) = 2$.
       Hm, so which $\alpha$ should we use?<br>
