@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        chtml: {
+          scale: 0.8
+        }
+      };
+    </script>
+  </head>
+  <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
+    <h1>the balanced collatz problem [unfinished "blogpost"]</h1>
+    <p>
+      The collatz problem needs no introduction because it is one of the most infamous problems in the history of mathematics.
+      It is so infamous, in fact, that I do not have much serious interest in solving it.
+      However, something I found interesting was the fundamental reason why we would <i>expect</i> every orbit to reach 1.
+      Let $\alpha = 3$ and $\beta = 2$. The collatz map can be written in this form:<br><br>
+      $f(r) = \begin{cases}
+      \frac{\alpha r + 1}{\beta} & r \equiv 1 \mod \beta \\
+      \frac{r}{\beta} & \text{otherwise}
+      \end{cases}$<br><br>
+      The choice to label the independent variable "r" is important because the goal will be to generalize this to specific types of rings, but I should not get ahead of myself.
+      The important thing to note is that we can model the "expected value" in change in valuation by assuming there is a $\frac{1}{2}$ chance that any given "even" number will become "odd" when divided by $\beta$.
+      However, the current form of the collatz map is inconvenient to our purposes. Let's define an auxiliary function "[]" to assist in a new definition:<br><br>
+      $[r] = \frac{r}{\beta^n}, n = \sup(\{n: \beta^n \mid r\})$<br>
+      $f(r) = [\alpha r + 1]$<br><br>
+      This is often known as the "Syracuse" function. It is essentially the same as the collatz map but its image is odd numbers only; it skips past all the even iterations.
+      Using the Syracuse form of the collatz map, we can model the expected valuation increase from one application of this map:<br><br>
+      $E = \sum_{n=1}^{\infty}\frac{v(\alpha) - n v(\beta)}{2^n}$<br><br>
+      Note that valuation here is assumed to be a function on $a,b \in R^{\neq 0} \rightarrow \mathbb{R}$ which satisfies $v(ab) = v(a) + v(b)$.
+      I am not sure what the general name of such a valuation is called, but if I must coin a name, it should be called a pseudo-logarithmic valuation.
+      It lets us measure the size of a non-zero element of a ring in a geometric-flavored way, which is precisely what I need.
+      For integers, $v(r) = \log\mid r \mid$ works nicely, but we can extend this to other rings! (Yet again, don't want to get ahead of myself.)
+      Anyway, let's find an explicit formula for E:<br><br>
+      $\sum_{n=1}^{\infty}\frac{v(\alpha) - n v(\beta)}{2^n}
+      = \sum_{n=1}^{\infty}\frac{v(\alpha)}{2^n} - \sum_{n=1}^{\infty}\sum_{k=n}^{\infty}\frac{v(\beta)}{2^k}
+      = v(\alpha) - \sum_{n=1}^{\infty}\frac{v(\beta)}{2^{n-1}} = v(\alpha) - 2v(\beta)$<br><br>
+      Well, that's a nice formula if I ever saw one! Indeed, $\log\mid\frac{3}{4}\mid &lt; 0$ so we expect the collatz conjecture to be true.
+      And this is where the title of this post comes from! This formula made me wonder: "can we have a <i>balanced</i> collatz problem such that E = 0?"
+      It turns out, we <i>can</i>! But not over $\mathbb{Z}$, because we must have two important requirements for $\alpha$ and $\beta$:<br><br>
+      $R/(\beta) \cong Z/2Z$<br>
+      $\alpha \notin (\beta)$<br><br>
+      The first requirement guarantees that $\beta$ splits the ring into "odds" and "evens".
+      The second requirement guarantees that $\beta \mid \alpha r + 1$.
+      However, given these conditions, it is impossible for $\mathbb{Z}$ to have a "balanced" collatz problem because squares of 2 (or -2) must be even.
+      (Note that by the condition on what $v$ should be, given above, $2v(\beta) = v(\beta^2)$.)
+      So we must turn to other rings.
+      (In fact, they must be integral domains, because we want that there be a unique q such that if $r \in (\beta)$ then $r = \beta q$.
+      Otherwise division by $\beta$ is not well-defined.
+      Indeed, assume that there exist $q_1$ and $q_2$ such that the above equation holds.
+      Then $r - r = \beta (q_1 - q_2) = 0$ and R being an integral domain proves that $q_1 = q_2$.)
+    </p>
+    <h2>another two integral domains that fail to be balanced</h2>
+    <p>
+      In general, it is not obvious whether a ring has a principle ideal $(\beta)$ such that $R/(\beta) \cong Z/2Z$.
+      However, two examples of such rings are $Z[x]/(x^2+1)$ and $Z[x]/(x^2-2)$.
+      (Note that both rings are integral domains because they are a quotient by a prime element of Z[x].)
+      For the first ring, let $\beta = x + 1$.
+      This is allowed: in $Z[x]/(x^2+1)/(x+1)$,<br><br>
+      $(x - 1)(x + 1) = x^2 - 1 = -2 = 0$<br><br>
+      so $x = 1$ follows and it is not hard to see that $Z[x]/(x^2+1)/(x+1) \cong Z/2Z$.
+      Great! Let's define $v(r) = \log\mid r \mid$ again, using the norm of r as the "absolute value".
+      Sadly, it is impossible to balance a collatz problem over this ring too.
+      $2v(\beta) = 2\log(2) = \log(4)$, but there is no $\alpha \notin (\beta)$ such that $\mid \alpha \mid = 4$.
+      What about the second example I gave, $Z[x]/(x^2-2)$?
+      This time, let $\beta = x$.
+      The argument is even easier this time: $x^2 = 2$ and $x^2 = 0$ so $2 = 0$ is implied.
+      Amusingly, "even" numbers are just numbers with an even constant term, regardless of the coefficient next to x.
+      We can define $v(r) = \log\mid r \mid$ yet again, but yet again we fail to make a balanced problem.
+      $2v(\beta) = 2\log(\sqrt{2}) = \log(2)$, but there is no $\alpha \notin (\beta)$ such that $\mid \alpha \mid = 2$.
+      The common thread here is that a number with twice the valuation as $\beta$ will always be divisible by $\beta$.
+      Should we lose all hope in a balanced collatz problem?
+    </p>
+    <h2>the integral domain that can be balanced</h2>
+    <p>
+      I am sure that there is another integral domain out there with the properties I am looking for.
+      I encourage readers to try and find another one than the one I found.
+      The one I found, however, is<br><br>
+      $R = Z[x]/(2) = (Z/2Z)[x]$<br><br>
+      We can let $\beta = x$ and $v(x) = \deg(x)$.
+      Firstly, it is obvious that $(Z/2Z)[x]/(x) \cong Z/2Z$.
+      Secondly, this v does satisfy $v(ab) = v(a) + v(b)$.
+      Most importantly, we <i>can</i> balance around this particular pseudo-logarithmic valuation.
+      In fact, there are two ways: $\alpha = x^2 + 1$ and $\alpha = x^2 + x + 1$.<br><br>
+      $E = v(\alpha) - 2v(\beta) = 2 - 2 * 1 = 0$<br><br>
+      Indeed, all we need is that $\deg(\alpha) = 2$.
+      Hm, so which $\alpha$ should we use?<br>
+    </p>
+    <h2>convenient paper from 1987 to the rescue</h2>
+    According to <a href="https://doi.org/10.1016/0022-314X(87)90032-1">K.R Matthews and G.M Leigh</a>, for $\alpha = x^2 + 1$, there are really boring proveably unbounded sequences.
+    So I will ignore this value of $\alpha$ and focus on the $\alpha = x^2 + x + 1$ case.
+  </body>
+</html>
