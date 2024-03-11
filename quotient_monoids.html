@@ -10,6 +10,9 @@
         },
         chtml: {
           scale: 0.8
+        },
+        loader: {
+          load: ['[tex]/ams']
         }
       };
     </script>
@@ -28,6 +31,33 @@
     So prepare yourself, because if I do my job right, this blog post will pull the wool off your eyes and you will never see kernels the same again.
     (If you already are universial-algebra-pilled, then feel free to laugh at me for how seriously I am taking myself in this introduction.)
     <h2>reframing quotient groups</h2>
-    If you are reading this, then just know, I haven't finished this post yet :(
+    Let's start with the familiar.
+    Recall how quotient groups are constructed.
+    Well, you may be thinking of normal subgroups and friends right now.
+    This is not what we want.
+    We want an equivalence relation that respects the group operation.
+    Normal subgroups and friends are <i>results</i>, not definitions.
+    Let $\sim$ be our equivalence relation over our group $(G, \cdot)$.
+    Then we define our equivalence relation to respect $\cdot$ if for all $a, b, c \in G$, <br>
+    $a \sim b \rightarrow ca \sim cb$ and $a \sim b \rightarrow ac \sim bc$ <br>
+    From there it is possible to prove that cosets constructed via a normal subgroup are precisely these types of equivalence relations.
+    However, let's pretend we did not know that.
+    Define $G/\sim$ as the partition induced by $\sim$ with G's $\cdot$ remaining as our group operation, but this time applying over cosets.
+    This is well-defined because of our equivalence relation's respect for $\cdot$.
+    It also induces a natural projection $G \rightarrow G/\sim$ by mapping elements of G onto their cosets.
+    Even with this bare-bones treatment of quotient groups, we still have a version of the Homomorphism Theorem!
+    (Also known as the First Isomorphism Theorem, or a lot of other names, because this theorem has way too many names.)
+    To see why, consider any surjective group homomorphism $\varphi: G \rightarrow H$.
+    We can define $\sim$ over $G$ by letting $a \sim b$ iff $\varphi(a) = \varphi(b)$.
+    It is quick to verify this is an equivalence relation.
+    Critically, $\sim$ also respects $\cdot$; given any $a, b, c \in G$, <br>
+    $a \sim b \rightarrow \varphi(a) = \varphi(b) \rightarrow \varphi(c) \varphi(a) = \varphi(c) \varphi(b) \rightarrow \varphi(ca) = \varphi(cb) \rightarrow ca \sim cb$ <br>
+    and because $\varphi$ is surjective, for any $h \in H$ there exists at least one $c$ such that $\varphi(c) = h$.
+    This, along with the natural reflected argument, proves that $\sim$ respects G's $\cdot$.
+    Let's (suggestively) rename $\sim$ to $\ker \varphi$.
+    Then we have constructed a natural isomorphism between $G/\ker \varphi$ and $H$!
+    (And further, the natural projection mentioned earlier factors through it.)
+    <h2>hold on, you called that equivalence relation <i>what?</i></h2>
+    blogpost is unfinished :( if you are reading this feel free to annoy keith to finish it
   </body>
 </html>
