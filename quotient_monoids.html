@@ -33,16 +33,16 @@
     <h2>reframing quotient groups</h2>
     Let's start with the familiar.
     Recall how quotient groups are constructed.
-    Well, you may be thinking of normal subgroups and friends right now.
+    Well, you may be thinking of normal subgroups and their friends right now.
     This is not what we want.
     We want an equivalence relation that respects the group operation.
-    Normal subgroups and friends are <i>results</i>, not definitions.
+    Normal subgroups and their friends are <i>results</i>, not definitions.
     Let $\sim$ be our equivalence relation over our group $(G, \cdot)$.
-    Then we define our equivalence relation to respect $\cdot$ if for all $a, b, c \in G$, <br>
-    $a \sim b \rightarrow ca \sim cb$ and $a \sim b \rightarrow ac \sim bc$ <br>
+    Then we define our equivalence relation to respect $\cdot$ if for all $a, b, c \in G$, <br> <br>
+    $a \sim b \rightarrow ca \sim cb$ and $a \sim b \rightarrow ac \sim bc$ <br> <br>
     From there it is possible to prove that cosets constructed via a normal subgroup are precisely these types of equivalence relations.
     However, let's pretend we did not know that.
-    Define $G/\sim$ as the partition induced by $\sim$ with G's $\cdot$ remaining as our group operation, but this time applying over cosets.
+    Define $G/\sim$ as G's multiplication applied over the cosets (i.e. partitions) induced by $\sim$.
     This is well-defined because of our equivalence relation's respect for $\cdot$.
     It also induces a natural projection $G \rightarrow G/\sim$ by mapping elements of G onto their cosets.
     Even with this bare-bones treatment of quotient groups, we still have a version of the Homomorphism Theorem!
@@ -50,13 +50,12 @@
     To see why, consider any surjective group homomorphism $\varphi: G \rightarrow H$.
     We can define $\sim$ over $G$ by letting $a \sim b$ iff $\varphi(a) = \varphi(b)$.
     It is quick to verify this is an equivalence relation.
-    Critically, $\sim$ also respects $\cdot$; given any $a, b, c \in G$, <br>
-    $a \sim b \rightarrow \varphi(a) = \varphi(b) \rightarrow \varphi(c) \varphi(a) = \varphi(c) \varphi(b) \rightarrow \varphi(ca) = \varphi(cb) \rightarrow ca \sim cb$ <br>
+    Critically, $\sim$ also respects $\cdot$; given any $a, b, c \in G$, <br> <br>
+    $a \sim b \rightarrow \varphi(a) = \varphi(b) \rightarrow \varphi(c) \varphi(a) = \varphi(c) \varphi(b) \rightarrow \varphi(ca) = \varphi(cb) \rightarrow ca \sim cb$ <br> <br>
     and because $\varphi$ is surjective, for any $h \in H$ there exists at least one $c$ such that $\varphi(c) = h$.
-    This, along with the natural reflected argument, proves that $\sim$ respects G's $\cdot$.
+    This, along with the argument applied to right-multiplication instead of left-multiplication, proves that $\sim$ respects G's $\cdot$.
     Let's (suggestively) rename $\sim$ to $\ker \varphi$.
-    Then we have constructed a natural isomorphism between $G/\ker \varphi$ and $H$!
-    (And further, the natural projection mentioned earlier factors through it.)
+    Then we have constructed a natural isomorphism between $G/\ker \varphi$ and $H$, and further, the natural projection mentioned earlier factors through it!
     <h2>hold on, you called that equivalence relation <i>what?</i></h2>
     blogpost is unfinished :( if you are reading this feel free to annoy keith to finish it
   </body>
