@@ -57,6 +57,56 @@
     Let's (suggestively) rename $\sim$ to $\ker \varphi$.
     Then we have constructed a natural isomorphism between $G/\ker \varphi$ and $H$, and further, the natural projection mentioned earlier factors through it!
     <h2>hold on, you called that equivalence relation <i>what?</i></h2>
-    blogpost is unfinished :( if you are reading this feel free to annoy keith to finish it
+    Okay so hear me out. <br>
+    Recall the traditional definition of a kernel: that which a map sends to identity.
+    Define the set $\{a \in G \text{s.t.} a \sim \text{e}}$ where $\text{e}$ designates the identity element of the group G.
+    I claim this set is the kernel and thus encodes all the information that the kernel encodes.
+    Indeed, applying our definition of $\sim$ yields $\varphi(a) = \text{e}$, which is precisely the definition of a kernel!
+    In fact, our induced equivalence relation from $\varphi$ contains <i>more</i> information than its traditional kernel.
+    So, why do we not use this definition of kernel when working with groups?
+    As it turns out, for "nice" algebraic structures, all you need is the traditional kernel to recover the entire equivalence relation.
+    Additionally, traditional kernels tend to be nice substructures too; groups have normal subgroups, rings have ideals, and modules have submodules.
+    However, if we want to take the quotient of a monoid, we need to forget all of this niceness and focus on the true definition of a kernel: <br> <br>
+    $\ker \varphi = \sim$ defined as $a \sim b$ iff $\varphi(a) = \varphi(b)$ for all a, b in $\varphi$'s domain.
+    <h2>let's actually take a quotient of a monoid now</h2>
+    Recall that a monoid is a group but without the requirement that all elements have inverses.
+    That is, it is a set M equipped with an associative binary operation with identity.
+    One easy example of a monoid is $(\mathbb{N}, +)$, that is, the set of naturals (including 0) over addition.
+    In order to take the quotient of a monoid, we need to specify an equivalence relation over that monoid.
+    Here is a weird but illustrative one: <br> <br>
+    $a \sim b: \begin{cases}
+    a = 0 \text{and} b = 0 \\
+    a > 0 \text{and} b > 0 \text{and} 2 \mid a - b
+    \end{cases}$ <br> <br>
+    In other words, $0 \sim 0$, $1 \sim 3 \sim 5 \sim \ldots$, and $2 \sim 4 \sim 6 \sim \ldots$.
+    Importantly, this equivalence relation respects $+$.
+    It is a good exercise to convince yourself of this.
+    Now we have that $(\mathbb{N}, +)/\sim = (\{[0], [1], [2]\}, +)$, where [n] indicates a coset represented by n.
+    Here is a Cayley table: <br> <br>
+    $\begin{tabular}{c | c c c c c}
+    + & [0] & [1] & [2] \\
+    \cline{1-4}
+    [0] & [0] & [1] & [1] \\
+    [1] & [1] & [2] & [1] \\
+    [2] & [2] & [1] & [2] \\
+    \end{tabular}$ <br> <br>
+    By the Homomorphism Theorem, it is possible to view this quotient an entirely different way.
+    We can view this $+$-respecting equivalence relation as the kernel of a surjective monoid homomorphism.
+    For example, we could consider $\varphi: (\mathbb{N}, +) \rightarrow (\{1,2,4\}, \cdot_6)$ where $\cdot_6$ is integer multiplication mod 6.
+    We define $\varphi$ as follows: <br> <br>
+    $\varphi(a) = \begin{cases}
+    1 & a = 0 \\
+    4 & a > 0 \text{and} 2 \mid a \\
+    2 & \text{otherwise}
+    \end{cases}$ <br> <br>
+    Note the similarity between the definition of this homomorphism and our equivalence relation.
+    This is not a coincidence!
+    In fact, I have engineered this scenario such that $\ker \varphi = \sim$ and proving this is yet again an exercise to the reader.
+    <h2>conclusion</h2>
+    I sincerely hope you enjoyed learning about more exotic quotients of algebraic structures.
+    I think they are really neat, anyway.
+    Here is a final exercise: find all quotients of $(\mathbb{N}, +)$.
+    Or in other words, find all surjective (monoid) homomorphisms (up to isomorphism) with $(\mathbb{N}, +)$ as their domain.
+    Enjoy! (Hint: you will need two different natural-number parameters to describe them all.)
   </body>
 </html>
