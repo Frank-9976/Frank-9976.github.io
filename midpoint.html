@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Cancellative Midpoint Algebras</title>
+    <meta property="og:title" content="Cancellative Midpoint Algebras">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frank-9976.github.io/midpoint.html">
+    <meta property="og:image" content="https://cdn.discordapp.com/avatars/431523235960717322/d26667a9c2be19a7b2c29212d4d2e808.webp">
+    <meta property="og:description" content="This blog post proves that cancellative midpoint algebras are the same as Z[1/2]-modules.">
+    <meta property="og:site_name" content="Frank Blog (by keith)">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        chtml: {
+          scale: 0.8
+        },
+        loader: {
+          load: ['[tex]/ams']
+        }
+      };
+    </script>
+  </head>
+  <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
+    <h1>cancellative midpoint algebras = Z[1/2]-modules</h1>
+    I have edited an nlab article while putting the source as, essentially, "trust me, bro."
+    Because of this, I figure I should create the source that I will cite before the people at nlab get mad at me.
+    <h2>what is a cancellative midpoint algebra</h2>
+    A midpoint algebra is a set and binary operation $(M, \mid)$ such that <br><br>
+    $a \mid a = a$ (idempotent) <br>
+    $a \mid b = b \mid a$ (commutative) <br>
+    $(a \mid b) \mid (c \mid d) = (a \mid c) \mid (b \mid d)$ ("medial") <br><br>
+    The medial axiom may look really arbitrary but it underpins two very important facts.
+    One comes up later, but an immediate consequence is that midpoint algebras are self-distributive, by letting b = a: <br><br>
+    $(a \mid a) \mid (c \mid d) = (a \mid c) \mid (a \mid d)$ (medial) <br>
+    $(a \mid a) \mid (c \mid d) = a \mid (c \mid d)$ (idempotent) <br>
+    $a \mid (c \mid d) = (a \mid c) \mid (a \mid d)$ (equality is transitive) <br><br>
+    In general, this is a very useful property.
+    Now, a cancellative midpoint algebra is typically defined by an implication statement resulting in the cancelation property.
+    However, an equivalent and often more convenient formulation introduces a new operation, which I will deonte with $/$, that obeys the following property: <br><br>
+    $(a \mid b) / b = a$ (cancellation 1) <br>
+    $(a / b) \mid b = a$ (cancellation 2) <br><br>
+    Essentially, this upgrades our algebra from a magma to a "quasigroup".
+    Typically, quasigroups are defined with both a left- and right-division, but we can avoid this because our operation is commutative.
+    Something that will be useful is that we can prove $\mid$ also distributes over $/$: <br><br>
+    $a \mid b = a \mid b$ (equality is reflexive) <br>
+    $a \mid ((b / c) \mid c) = a \mid b$ (cancellation 2) <br>
+    $(a \mid (b / c)) \mid (a \mid c) = a \mid b$ (self-distributive) <br>
+    $a \mid (b / c) = (a \mid b) / (a \mid c)$ (divide both sides by $(a \mid c)$) <br><br>
+    Okay at this point I'm going to save my progress and see if this page looks good so far.
+  </body>
+</html>
