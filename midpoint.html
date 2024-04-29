@@ -62,7 +62,7 @@
     <h2>the proof</h2>
     Given a cancellative midpoint algebra $(M, \mid, /)$, choose an arbitrary element $z \in M$ and define: <br><br>
     $a + b = (a \mid b) / z$ <br>
-    $-a = z / a$
+    $-a = z / a$ <br>
     $\frac{a}{2} = z \mid a$ <br><br>
     I call this element "z" because it will act as 0 (zero) in our constructed Z[1/2]-module.
     It turns out that regardless of what z you pick, the result is always the same up to isomorphism.
@@ -72,10 +72,10 @@
     However, we need right-division to be distributive and thus an endomorphism in order for this logic to work.
     The proof is as follows: <br><br>
     $a \mid b = a \mid b$ (equality is transitive) <br>
-    $a \mid b = (((a / c) \ mid c) \mid ((b / c) \mid c))$ (cancellation 2) <br>
+    $a \mid b = (((a / c) \mid c) \mid ((b / c) \mid c))$ (cancellation 2) <br>
     $a \mid b = ((a / c) \mid (b / c)) \mid c$ (self-distributive) <br>
     $(a \mid b) / c = (a / c) \mid (b / c)$ (divide both sides by c) <br><br>
-    Well, we also need to show it distributes over division, but that's easy enough.
+    Well, we also need to show it distributes over division, but that's easy enough. <br><br>
     $a / b = a / b$ (equality is transitive) <br>
     $a / b = ((a \mid c) / c) / ((b \mid c) / c)$ (cancellation 1) <br>
     $a / b = ((a \mid c) / (c \mid c)) / ((b \mid c) / (c \mid c))$ (idempotent) <br>
@@ -96,11 +96,12 @@
     $(z \mid a) \mid (b \mid c) = (z \mid a) \mid (c \mid b)$ (commutative) <br>
     $(z \mid a) \mid (b \mid c) = (z \mid c) \mid (a \mid b)$ (<b>medial!!</b>) <br>
     $a \mid ((b \mid c) / z) = c \mid ((a \mid b) / z)$ (divide both sizes by z, right-division distributing) <br>
-    $(a \mid ((b \mid c) / z)) / z = (c \mid ((a \mid b) / z)) / z$ (divide both sides by z, right-division distributing) <br>
+    $(a \mid ((b \mid c) / z)) / z = (c \mid ((a \mid b) / z)) / z$ (divide both sides by z) <br>
     $a + (b + c) = (a + b) + c$ (definition) <br><br>
     And there we go!
-    All that is left to show is that we have a sensible action by $\frac{1}{2}$ on this abelian group, which is refreshingly simple:
-    $\frac{a}{2} + \frac{a}{2} = ((z \mid a) \mid (z \mid a)) / z = (z \mid a) / z = a$ as desired.
+    All that is left to show is that we have a sensible action by $\frac{1}{2}$ on this abelian group, which is refreshingly simple: <br><br>
+    $\frac{a}{2} + \frac{a}{2} = ((z \mid a) \mid (z \mid a)) / z = (z \mid a) / z = a$ <br><br>
+    as desired.
     <h2>QED!</h2>
     I am sure that Peter Freyd already is aware of this, but hey, I can't find this fact elsewhere online, so might as well do it myself.
     Also, I often say that I enjoy maths because it's one big unending puzzle, and this is honestly the perfect example of that.
