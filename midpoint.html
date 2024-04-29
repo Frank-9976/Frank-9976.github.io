@@ -1,11 +1,11 @@
 <html>
   <head>
-    <title>Cancellative Midpoint Algebras</title>
-    <meta property="og:title" content="Cancellative Midpoint Algebras">
+    <title>Quasigroup Midpoint Algebras</title>
+    <meta property="og:title" content="Quasigroup Midpoint Algebras">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frank-9976.github.io/midpoint.html">
     <meta property="og:image" content="https://cdn.discordapp.com/avatars/431523235960717322/d26667a9c2be19a7b2c29212d4d2e808.webp">
-    <meta property="og:description" content="This blog post proves that cancellative midpoint algebras induce a unique Z[1/2]-module up to isomorphism, and vice versa.">
+    <meta property="og:description" content="This blog post proves that quasigroup midpoint algebras induce a unique Z[1/2]-module up to isomorphism, and vice versa.">
     <meta property="og:site_name" content="Frank Blog (by keith)">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,11 +24,9 @@
     </script>
   </head>
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
-    <h1>cancellative midpoint algebras = Z[1/2]-modules</h1>
-    I have edited an nlab article while putting the source as, essentially, "trust me, bro."
-    Because of this, I figure I should create the source that I will cite before the people at nlab get mad at me.
-    The goal of this blog post is to demonstrate that a cancellative midpoint algebra induces a unique Z[1/2]-module up to isomorphism, and vice versa.
-    <h2>what is a cancellative midpoint algebra</h2>
+    <h1>quasigroup midpoint algebras = Z[1/2]-modules</h1>
+    The goal of this blog post is to demonstrate that a quasigroup midpoint algebra induces a unique Z[1/2]-module up to isomorphism, and vice versa.
+    <h2>what is a quasigroup midpoint algebra</h2>
     A midpoint algebra is a set and binary operation $(M, \mid)$ such that <br><br>
     $a \mid a = a$ (idempotent) <br>
     $a \mid b = b \mid a$ (commutative) <br>
@@ -39,11 +37,13 @@
     $(a \mid a) \mid (c \mid d) = a \mid (c \mid d)$ (idempotent) <br>
     $a \mid (c \mid d) = (a \mid c) \mid (a \mid d)$ (equality is transitive) <br><br>
     In general, this is a very useful property.
-    Now, a cancellative midpoint algebra is typically defined by an implication statement resulting in the cancelation property.
-    However, an equivalent and often more convenient formulation introduces a new operation, which I will deonte with $/$, that obeys the following property: <br><br>
+    Now, story time.
+    The algebraic structure that you will find online is known as a cancellative midpoint algebra.
+    Originally when I first published this, I screwed up and did not realize that if an algebra is "cancellative", this does not imply it is a quasigroup.
+    However, I have edited this post to invent an entirely new type of algebraic structure purely so I can demonstrate this neat result!
+    Anyway, to upgrade a magma to a quasigroup, all that is needed is that we introduce a new operation, division, and give it these properties: <br><br>
     $(a \mid b) / b = a$ (cancellation 1) <br>
     $(a / b) \mid b = a$ (cancellation 2) <br><br>
-    Essentially, this upgrades our algebra from a magma to a "quasigroup".
     Typically, quasigroups are defined with both a left- and right-division, but we can avoid this because our operation is commutative.
     Something that will be useful is that we can prove $\mid$ also distributes over $/$: <br><br>
     $a \mid b = a \mid b$ (equality is reflexive) <br>
@@ -52,21 +52,21 @@
     $a \mid (b / c) = (a \mid b) / (a \mid c)$ (divide both sides by $(a \mid c)$) <br><br>
     Now we have the basics to get into the proof.
     <h2>motivation for what follows</h2>
-    We are motivated by the observation that any Z[1/2]-module induces a unique cancellative midpoint algebra.
+    We are motivated by the observation that any Z[1/2]-module induces a unique quasigroup midpoint algebra.
     Indeed, let our module be denoted $(A, +)$.
     (The letter A is suggestive of how this is just an abelian group equipped with a sensible "halving" operation.
     Also the letter M was taken because M stands for Midpoint.)
     Then we can define $a \mid b = \frac{a + b}{2}$ and $a / b = 2a - b$.
-    It is trivial to verify these obey each axiom of a cancellative midpoint algebra listed above.
+    It is trivial to verify these obey each axiom of a quasigroup midpoint algebra listed above.
     Our goal will be to uniquely reconstruct $(A, +)$ given $(M, \mid, /)$.
     <h2>the proof</h2>
-    Given a cancellative midpoint algebra $(M, \mid, /)$, choose an arbitrary element $z \in M$ and define: <br><br>
+    Given a quasigroup midpoint algebra $(M, \mid, /)$, choose an arbitrary element $z \in M$ and define: <br><br>
     $a + b = (a \mid b) / z$ <br>
     $-a = z / a$ <br>
     $\frac{a}{2} = z \mid a$ <br><br>
     I call this element "z" because it will act as 0 (zero) in our constructed Z[1/2]-module.
     It turns out that regardless of what z you pick, the result is always the same up to isomorphism.
-    This is because left-multiplication by $z' / z$ is a cancellative midpoint algebra automorphism that sends $z$ to $z'$ for any $z'$ we desire.
+    This is because left-multiplication by $z' / z$ is a quasigroup midpoint algebra automorphism that sends $z$ to $z'$ for any $z'$ we desire.
     This is part of why I verified above that $\mid$ distributes over both itself and division; this is sufficient to prove this is a valid endomorphism.
     Then right-division by $z' / z$ is a two-sided inverse and thus proves it is in fact an automorphism.
     However, we need right-division to be distributive and thus an endomorphism in order for this logic to work.
@@ -103,8 +103,10 @@
     $\frac{a}{2} + \frac{a}{2} = ((z \mid a) \mid (z \mid a)) / z = (z \mid a) / z = a$ <br><br>
     as desired.
     <h2>QED!</h2>
-    I am sure that Peter Freyd already is aware of this, but hey, I can't find this fact elsewhere online, so might as well do it myself.
-    Also, I often say that I enjoy maths because it's one big unending puzzle, and this is honestly the perfect example of that.
-    It was really fun to piece everything together :)
+    While this may be useless knowledge, I think it is funny how much structure a few rules can impose.
+    Hopefully you found it amusing.
+    Also, a reader suggested that I add a picture to help clarify the geometric meaning inherent in all of this. <br><br>
+    Say no more. <br><br>
+    <img src="/midpoint.png">
   </body>
 </html>
