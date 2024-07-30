@@ -5,7 +5,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frank-9976.github.io/simplices.html">
     <meta property="og:image" content="https://frank-9976.github.io/monkkey.png">
-    <meta property="og:description" content="This blog post shows how sets often want to be viewed as simplices.">
+    <meta property="og:description" content="This blog post shows how sets with n + 1 elements often want to be viewed as rank n simplices.">
     <meta property="og:site_name" content="Frank Blog (by keith)">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -25,6 +25,38 @@
   </head>
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
     <h1>sets = simplices</h1>
-    If you're seeing this, you're not supposed to be seeing this! Shoo!
+    Okay, clickbaity and reductive title aside, the reason I write this blog post is that there have been many times that sets with $n + 1$ elements have looked really gosh darn like rank $n$ simplices.
+    For those who don't know, a "simplex" is a generalization of the triangle and tetrahedron you might be familiar with.
+    The "rank" of a simplex is like the dimension of the space it lives in, although the technical details are a bit more nuanced.
+    But, for example, a triangle is a rank $2$ simplex, a tetrahedron is a rank $3$ simplex, and this concept can be extended into further dimensions.
+    Meanwhile, a line segment is a rank $1$ simplex, and a point is a rank $0$ simplex.
+    Again, this is all very handwavy.
+    So actually, let me define what a simplex is, in a way that will highlight why these things might be connected to sets.
+    <h2>but first, we need to talk about abstract polytopes</h2>
+    Think for a bit how you might define a polygon or polyhedron.
+    At least for me, it's not obvious at all.
+    Intuitively, we have this concept of what a polygon or polyhedron should be, but it's hard to write down the rules they must follow, isn't it? <br> <br>
+    Here's one perspective. <br> <br>
+    In a sense, a polyhedron is made up of many polygons stitched together along their line segment edges.
+    A polygon, similarly, is made up of many line segments stitched together along the vertices at their endpoints.
+    And a line segment is just two vertices stitched together along... well, it seems like nothing at all, so this seems to be where the pattern ends.
+    What it seems is that a rank $n$ polytope is made up of rank $n - 1$ polytopes stitched together along rank $n - 2$ seams.
+    (A "polytope" is the generalization of a polygon or polyhedron to any number of dimensions.)
+    Indeed, this is how "abstract polytopes" are defined.
+    In particular, an abstract polytope is a partially ordered set of subpolytopes ordered by "incidence", or whether one subpolytope is contained within the other.
+    For example, think of a cube.
+    Every face of the cube is incident to the cube itself in the sense that they are contained within the cube, if we think of this cube as including its boundary.
+    Additionally, each edge is incident to two different faces of the cube, but no more than that.
+    If an edge isn't part of a face, then it's not incident to it.
+    This applies similarly to vertices as well: every vertex of the cube is incident to three edges and three faces, if you can visualize that.
+    For technical reasons, we also consider there to be a bottom element of this poset of rank $-1$.
+    It just makes the math work out nicer, but you can think of it as what the vertices are stitched together along, or empty space that is incident to everything.
+    There are other details I'm leaving out, but for the purposes of this blog post, you can think of abstract polytopes as posets representing incidence relations.
+    <h2>the abstract polytope definition of simplices</h2>
+    Consider the powerset of a set with $3$ elements.
+    It has a natural ordering by subset inclusion.
+    Now label the vertices of a triangle with $A, B, C$ and label each subpolytope of the triangle by which vertices the subpolytope contains within it. <br>
+    <img src="/ABC_triangle.png"> <br>
+    If you're reading this, uhhh this blog post is unfinished, sorry :P
   </body>
 </html>
