@@ -57,6 +57,30 @@
     It has a natural ordering by subset inclusion.
     Now label the vertices of a triangle with $A, B, C$ and label each subpolytope of the triangle by which vertices the subpolytope contains within it. <br>
     <img src="/ABC_triangle.png"> <br>
-    If you're reading this, uhhh this blog post is unfinished, sorry :P
+    If we include empty space as being the empty string, then there is a precise correspondence between incidence of subpolytopes of a triangle and subset inclusion of the set $\{A, B, C\}$!
+    This is no coincidence and in fact is one way to define what a simplex is, at least in the abstract polytope sense.
+    We define the rank $n$ simplex as the abstract polytope whose incidence poset is the subset inclusion poset of a set with $n + 1$ elements.
+    <h2>now let's talk about automorphism groups</h2>
+    Random question: what is the automorphism group of a set with $n + 1$ elements?
+    Recall that an automorphism of a set is just a permutation, that is, an invertible function from itself to itself.
+    We often denote the group of permutations on a set with $n + 1$ elements as $S_{n + 1}$. <br> <br>
+    Random question: what is the automorphism group of a rank $n$ simplex? Well, we could define this entirely abstractly in terms of poset automorphisms, which are order-preserving permutations.
+    However, I think it's more interesting to now embed our abstract rank $n$ simplex into the Euclidean space that we are all familiar with in real life.
+    We could place the vertices all over space willy-nilly, but let's take a so-called "symmetric realization" and place them in a way that preserves the symmetries of the abstract structure.
+    For example, a rank $2$ simplex becomes an equilateral triangle, a rank $3$ simplex becomes a regular tetrahedron, etc.
+    Now, let's say that an automorphism is an isometry of the Euclidean space that maps the simplex to itself.
+    In simpler terms, this is typically what we think of as a symmetry of a geometric figure.
+    For example, an equilateral triangle has a symmetry group often denoted $D_3$, corresponding to the $3$ rotations and $3$ reflections that send the triangle to itself.
+    It turns out that we can achieve any permutation of the vertices of a simplex via such isometries!
+    Here's a quick proof: select two vertices $A, B$ and define a hyperplane by $\{C \text{such that} d(A,C) = d(C,B)\}$, where $d$ represents the Euclidean distance function.
+    It is evident by the symmetry of the simplex that every other vertex will be in this hyperplane, so we may take the isometry that consists of reflecting across it.
+    This is purely a transposition of $A$ and $B$.
+    Transpositions generate every permutation and we can apply this construction to any two points to obtain any transposition, QED.
+    In fact, because rank $n$ simplices have $n + 1$ vertices, we have that its isometry group is precisely $S_{n + 1}$!
+    Further, rotations correspond to even permutations, and reflections correspond to odd permutations.
+    Thus, the alternating group $A_{n + 1}$ is precisely the <i>rotation group</i> of a rank $n$ simplex! <br>
+    Pretty cool, huh?
+    <h2>my final demonstration: projective geometry, $q$-analog combinatorics, and the field with $1$ element (i swear im not a crank)</h2>
+    oopsie woopsie this blog post aint done yet
   </body>
 </html>
