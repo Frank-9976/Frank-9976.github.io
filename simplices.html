@@ -73,7 +73,9 @@
     In simpler terms, this is typically what we think of as a symmetry of a geometric figure.
     For example, an equilateral triangle has a symmetry group often denoted $D_3$, corresponding to the $3$ rotations and $3$ reflections that send the triangle to itself.
     It turns out that we can achieve any permutation of the vertices of a simplex via such isometries! <br> <br>
-    Here's a quick proof: select two vertices $A, B$ and define a hyperplane by $\{C \mid d(A,C) = d(C,B)\}$, where $d$ represents the Euclidean distance function.
+    Here's a quick proof: select two vertices $A, B$ and define a rank $n - 1$ hyperplane by $\{C \mid d(A,C) = d(C,B)\}$, where $d$ represents the Euclidean distance function.
+    (A hyperplane is just a generalization of a plane, which is a rank $2$ hyperplane.
+    A rank $1$ hyperplane is a line, a rank $3$ hyperplane is hard to visualize but you can think of it as separating rank $4$ Euclidean space into two halves, etc.)
     It is evident by the symmetry of the simplex that every other vertex will be in this hyperplane, so we may take the isometry that consists of reflecting across it.
     This is purely a transposition of $A$ and $B$.
     Transpositions generate every permutation and we can apply this construction to any two points to obtain any transposition, QED. <br> <br>
@@ -84,6 +86,18 @@
     <h2>my final demonstration: projective geometry, $q$-analog combinatorics, and the field with $1$ element <br> <small>(i swear im not a crank)</small></h2>
     Finally, I am going to demonstrate one last thing, and in fact, this is the reason why I made this blog post to begin with.
     The other stuff before this was just some supporting facts, but this is the real kicker for me. <br> <br>
-    Firstly, recall that rank $n$ projective space is $(V - \{0\})/~$ where $V$ is a rank $n + 1$ $k$-vector space and $v ~ w$ iff $cv = w$ for some non-zero $c \in k$.
+    Firstly, recall that rank $n$ projective space is $(V - \{0\}) / \sim$ where $V$ is a rank $n + 1$ $k$-vector space and $v \sim w$ iff $cv = w$ for some non-zero $c \in k$.
+    (I'm using the word "rank" here instead of dimension for consistency and brevity even though this word is usually reserved for when $k$ is not a field.)
+    One natural question to ask is this: given a field with $q$ elements, how many distinct rank $k$ projective hyperplanes are there in rank $n$ projective space?
+    Here's one way to find out.
+    Firstly, note that the number of points (rank $0$ hyperplanes) in rank $n - 1$ projective space is <br> <br>
+    $[n]_q = \frac{q^n - 1}{q - 1} = 1 + q + q^2 + \ldots + q^{n - 1}$. <br> <br>
+    This is just because we have $q^n - 1$ elements in $V - \{0\}$ and we have $q - 1$ unique non-zero scalars in $k$.
+    The bracket notation is stolen directly from $q$-analog combinatorics and represents the "$q$-analog" of $n$.
+    Now, to define a rank $k$ hyperplane, we need $k + 1$ points.
+    Each time we choose a point, we need to make sure that we don't pick from the smaller rank hyperplane defined by the points we've already chosen.
+    In total, we end up with <br> <br>
+    $\prod_{i = 0}^{k} ([n + 1]_q - [i]_q)$ <br> <br>
+    different possible choices.
   </body>
 </html>
