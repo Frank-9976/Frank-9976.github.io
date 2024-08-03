@@ -88,7 +88,7 @@
     The other stuff before this was just some supporting facts, but this is the real kicker for me. <br> <br>
     Firstly, recall that rank $n$ projective space is $(V - \{0\}) / \sim$ where $V$ is a rank $n + 1$ $k$-vector space and $v \sim w$ iff $cv = w$ for some non-zero $c \in k$.
     (I'm using the word "rank" here instead of dimension for consistency and brevity even though this word is usually reserved for when $k$ is not a field.)
-    One natural question to ask is this: given a field with $q$ elements, how many distinct rank $k$ projective hyperplanes are there in rank $n$ projective space?
+    One natural question to ask is this: given a field with $q$ elements, how many distinct rank $k$ (projective) hyperplanes are there in rank $n$ projective space?
     Here's one way to find out.
     Firstly, note that the number of points (rank $0$ hyperplanes) in rank $n - 1$ projective space is <br> <br>
     $[n]_q = \frac{q^n - 1}{q - 1} = 1 + q + q^2 + \ldots + q^{n - 1}$. <br> <br>
@@ -97,7 +97,13 @@
     Now, to define a rank $k$ hyperplane, we need $k + 1$ points.
     Each time we choose a point, we need to make sure that we don't pick from the smaller rank hyperplane defined by the points we've already chosen.
     In total, we end up with <br> <br>
-    $\prod_{i = 0}^{k} ([n + 1]_q - [i]_q)$ <br> <br>
+    $$\prod_{i = 0}^{k} ([n + 1]_q - [i]_q)$$ <br> <br>
     different possible choices.
+    However, we need to account for how we can pick different points or the same points in a different order and still end up with the same hyperplane.
+    To this end, we can divide by the number of unique bases of our hyperplane.
+    Our hyperplane is rank $k$ and so this is just our formula applied to $n = k$; we pick points "in general position" until we can't anymore.
+    In total, we end up with the formula <br> <br>
+    $$\frac{ \prod_{i = 0}^{k} ([n + 1]_q - [i]_q) }{ \prod_{i = 0}^{k} ([k + 1]_q - [i]_q) }$$. <br> <br>
+    Indeed, plug in $q, n, k$ and this will spit out the number of distinct rank $k$ hyperplanes in rank $n$ projective $\mathbb{F}_q$-space.
   </body>
 </html>
