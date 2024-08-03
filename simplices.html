@@ -97,13 +97,21 @@
     Now, to define a rank $k$ hyperplane, we need $k + 1$ points.
     Each time we choose a point, we need to make sure that we don't pick from the smaller rank hyperplane defined by the points we've already chosen.
     In total, we end up with <br> <br>
-    $$\prod_{i = 0}^{k} ([n + 1]_q - [i]_q)$$ <br> <br>
+    $\prod_{i = 0}^{k} ([n + 1]_q - [i]_q)$ <br> <br>
     different possible choices.
     However, we need to account for how we can pick different points or the same points in a different order and still end up with the same hyperplane.
     To this end, we can divide by the number of unique bases of our hyperplane.
     Our hyperplane is rank $k$ and so this is just our formula applied to $n = k$; we pick points "in general position" until we can't anymore.
     In total, we end up with the formula <br> <br>
-    $$\frac{ \prod_{i = 0}^{k} ([n + 1]_q - [i]_q) }{ \prod_{i = 0}^{k} ([k + 1]_q - [i]_q) }$$. <br> <br>
+    $\frac{ \prod_{i = 0}^{k} ([n + 1]_q - [i]_q) }{ \prod_{i = 0}^{k} ([k + 1]_q - [i]_q) }$. <br> <br>
     Indeed, plug in $q, n, k$ and this will spit out the number of distinct rank $k$ hyperplanes in rank $n$ projective $\mathbb{F}_q$-space.
+    Now, let $q = 1$.
+    If we use the right hand side of the expression defining $[n]_q$, we get $[n]_1 = n$.
+    (This is the core idea behind $q$-analog combinatorics; the $q$-analogs just become typical everyday numbers when we take the "limit" as $q \rightarrow 1$.)
+    Our formula becomes <br> <br>
+    $\frac{ \prod_{i = 0}^{k} (n + 1 - i) }{ \prod_{i = 0}^{k} (k + 1 - i) } = \frac{ (n+1)!/k! }{(k+1)!} = {n+1 \choose k+1}$. <br> <br>
+    Huh. Does this have a sensible combinatorical interpretation?
+    <h2>yes it does, but we need to define projective $\mathbb{F}_1$-space <br> <small>i swear im not crazy</small></h2>
+    Okay, you've read this far, so, please, hear me out.
   </body>
 </html>
