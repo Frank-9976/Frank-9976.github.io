@@ -109,9 +109,32 @@
     If we use the right hand side of the expression defining $[n]_q$, we get $[n]_1 = n$.
     (This is the core idea behind $q$-analog combinatorics; the $q$-analogs just become typical everyday numbers when we take the "limit" as $q \rightarrow 1$.)
     Our formula becomes <br> <br>
-    $\frac{ \prod_{i = 0}^{k} (n + 1 - i) }{ \prod_{i = 0}^{k} (k + 1 - i) } = \frac{ (n+1)!/k! }{(k+1)!} = {n+1 \choose k+1}$. <br> <br>
+    $\frac{ \prod_{i = 0}^{k} (n + 1 - i) }{ \prod_{i = 0}^{k} (k + 1 - i) } = \frac{ (n+1)!/(n-k)! }{(k+1)!} = {n+1 \choose k+1}$. <br> <br>
     Huh. Does this have a sensible combinatorical interpretation?
     <h2>yes it does, but we need to define projective $\mathbb{F}_1$-space <br> <small>i swear im not crazy</small></h2>
-    Okay, you've read this far, so, please, hear me out.
+    Okay, you've read this far, so, please, hear me out. <br>
+    <img src="/planes.png"> <br>
+    For the sake of visualization, let $n = 2$.
+    On the left, we have projective $\mathbb{F}_3$-space.
+    Recall that rank $n$ projective space can be thought of as <i>affine</i> spaces of rank $n, n-1, \ldots, 1, 0$, stitched together.
+    This is because we can usually normalize the first coordinate of a point in projective space to $1$ via scaling.
+    However, if that coordinate is $0$, then we can't do this, and the subspace where this coordinate is $0$ is simply a rank $n - 1$ hyperplane.
+    Applying this procedure recursively yields the desired decomposition.
+    In the picture, this manifests as $3$ affine spaces of rank $2, 1, 0$ and $9, 3, 1$ points, respectively.
+    Then, when $q = 2$, we have $4, 2, 1$ points.
+    As $q$ tends to 1, we have a single point representing each affine space.
+    This makes sense, because taken literally, affine $\mathbb{F}_1$-space is just the $0$ space, i.e. a $1$ point space.
+    This yields a... you guessed it, rank $2$ simplex!
+    Indeed, rank $n$ projective $\mathbb{F}_1$-space is a rank $n$ simplex, which, as we know, is a set with $n + 1$ elements.
+    Further, a rank $k$ hyperplane is just a subset with $k + 1$ elements, so counting subspaces of rank $k$ is just choosing $k + 1$ elements from an $n + 1$ element set.
+    This is precisely what our formula describes!
+    (Hopefully you don't think I'm <i>that</i> crazy anymore.)
+    <h2>conclusion</h2>
+    You may be asking how you can actually apply this to actual math.
+    My opinion is that whenever we deal with sets without any structure, we should visualize them as simplices to respect the inherent symmetries a structureless set has.
+    Often we write out the elements on a line, but this breaks our symmetries when $\|S\| > 2$.
+    Inherently, $3$ element sets want to live on the plane, and $4$ element sets want to live in 3D space.
+    Regardless though, these are relatively obscure facts and I wanted to organize them all in one place for ease of sharing.
+    So yeah, hope you enjoyed.
   </body>
 </html>
