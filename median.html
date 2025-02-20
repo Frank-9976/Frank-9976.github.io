@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Moral Medians</title>
+    <meta property="og:title" content="Moral Medians">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frank-9976.github.io/median.html">
+    <meta property="og:image" content="https://frank-9976.github.io/monkkey.png">
+    <meta property="og:description" content="This blog post shows how a lattice is distributive if and only if it has a moral sense of median.">
+    <meta property="og:site_name" content="Frank Blog (by keith)">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        chtml: {
+          scale: 0.8
+        },
+        loader: {
+          load: ['[tex]/ams']
+        }
+      };
+    </script>
+  </head>
+  <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
+    <h1>moral medians</h1>
+    The thesis of this blog post will be that a lattice (in the sense of order theory) has a unique concept of a $3$-arity "median" operation if and only if it is distributive.
+    I am recording this observation on my blog because I have nowhere better to put it.
+    So don't expect a well-written explanatory blog post because this is just quick and dirty.
+    <h2>standard definitions</h2>
+    A <i>lattice</i> is a set equipped with $\land$ (read: meet) and $\lor$ (read: join) operations that act as "greatest lower bound" and "least upper bound" operations, respectively.
+    You can find a precise definition on the internet easily, but it won't be necessary for this blog post anyway, so I won't bother writing it out here.
+    The important part is that all lattices have an induced partial order $\leq$ and are often pictographically represented with <a href="https://en.wikipedia.org/wiki/Hasse_diagram">Hasse diagrams</a>, which I <i>will</i> use in this post.
+    A lattice is <i>distributive</i> iff $x \land (y \lor z) = (x \land y) \lor (x \land z)$ iff $x \lor (y \land z) = (x \lor y) \land (x \lor z)$
+    iff it is isomorphic to a subset of a power set with $\cap$ and $\cup$ as its $\meet$ and $\join$ iff it has no sublattices isomorphic to the $M_3$ or $N_5$ lattice.
+    As you can see, they have a lot of different characterizations, the latter of which will be particular relevant for this post.
+    <h2>nonstandard definitions</h2>
+    Define <br><br>
+    $M(x, y, z) := (x \land y) \lor (x \land z) \lor (y \land z)$ <br>
+    $M'(x, y, z) := (x \lor y) \land (x \lor z) \land (y \lor z)$ <br>
+    <h2>big claim</h2>
+    $M(x, y, z) = M'(x, y, z)$ in $(L, \land, \lor)$ if and only if $L$ is distributive.
+    <h2>distributive implies $M = M'$</h2>
+    The easiest way to see this is to use that distributive lattices have the same equational theory as $(\{0, 1\}, \land, \lor)$ and verify by hand (i.e. use a truth table) that these define the same boolean operations.
+    Intuitively, if we view $x, y, z$ as sets, $M(x, y, z)$ is the set of elements in at least two of $x, y, z$, and $M'(x, y, z)$ is a really weird way of saying the same thing.
+    (Note that if $L$ is linearly ordered, both $M$ and $M'$ are the $3$-arity "median" operation, as I promised in the title of this post. This is not part of the proof, but I should mention it somewhere.)
+    ($\land$ is minimum and $\lor$ is maximum in this specific case.)
+    <h2>not distributive implies $M \neq M'$</h2>
+    Sublattices preserve lattice operations, so we just need to show that this is true of $M_3$ and $N_5$. $M_3$ first: <br>
+    <img src="/M3.png"> <br>
+    We have that $M(x, y, z) = 0$ but $M'(x, y, z) = 1$. $N_5$ next: <br>
+    <img src="/N5.png"> <br>
+    We have that $M(x, y, z) = x$ but $M'(x, y, z) = y$.
+    <h2>gg keith, so what</h2>
+    Honestly, I don't really have a moral of the story here. I just think this is a cool fact, so I wanted to write it up. Bye!!
+  </body>
+</html>
