@@ -53,6 +53,40 @@
     <img src="/N5.png"> <br>
     We have that $M(x, y, z) = x$ but $M'(x, y, z) = y$.
     <h2>gg keith, so what</h2>
-    Honestly, I don't really have a moral of the story here. I just think this is a cool fact, so I wanted to write it up. Bye!!
+    Honestly, I don't really have a moral of the story here. I just think this is a cool fact, so I wanted to write it up. Bye!! <br><br><br>
+    <h2>sike! i have another proof to share</h2>
+    If $t$ is a lattice term, define $t^\circ$ to be the lattice term replacing every instance of $\land$ with $\lor$ in $t$ and vice-versa.
+    Also, for brevity, for two lattice terms $t, t'$, let $t \approx t'$ denote that $t = t'$ in all lattices.
+    <h2>another big claim</h2>
+    $t \approx t^\circ$ if and only if $t \approx x$ for some atomic term $x$.
+    <h2>proof</h2>
+    Let $t$ be a lattice term such that $t \approx t^\circ$, $t \not \approx x$ for all atomic terms $x$, and $t$ is the least complex term with this property.
+    (By complexity, I mean the count of the number of $\land$'s and $\lor$'s used.)
+    WLOG let $t = t_1 \land t_2$.
+    It turns out <a href="https://en.m.wikipedia.org/wiki/Free_lattice#Word_problem">there is a nice description</a> of the word problem for lattices.
+    Because we know $t_1 \land t_2 \leq t_1^\circ \lor t_2^\circ$, the solution to the lattice word problem tells us this implies one of four possibilities: <br>
+    <ul>
+      <li>$t_1 \leq t^\circ$</li>
+      <li>$t_2 \leq t^\circ$</li>
+      <li>$t \leq t_1^\circ$</li>
+      <li>$t \leq t_2^\circ$</li>
+    </ul> <br>
+    But we also know $t_1^\circ \lor t_2^\circ \leq t_1 \land t_2$, from which we have: <br>
+    <ul>
+      <li>$t^\circ \leq t_1$</li>
+      <li>$t^\circ \leq t_2$</li>
+      <li>$t_1^\circ \leq t$</li>
+      <li>$t_2^\circ \leq t$</li>
+    </ul> <br>
+    From this, we know that one of the following must be true: <br>
+    <ul>
+      <li>$t_1 \approx t^\circ (\approx t)$</li>
+      <li>$t_2 \approx t^\circ (\approx t)$</li>
+      <li>$t \approx t_1^\circ$</li>
+      <li>$t \approx t_2^\circ$</li>
+    </ul> <br>
+    But all of these violate our assumption of least complexity on $t$, as desired.
+    <h2>lmao</h2>
+    I guess the variety of distributive lattices is unlike the variety of lattices in this way.
   </body>
 </html>
