@@ -1,0 +1,22 @@
+/* formatting */
+* {
+  font-family: Monospace;
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+  margin: 0.5em;
+  font-size: 1em;
+  background-color: #eeeeee;
+}
+h1 {
+  margin: 0.5em;
+  background-color: #f7f7f7;
+}
+canvas {
+  border: 0.3em solid black;
+}
+div {
+  margin: 0.5em;
+  background-color: #dddddd;
+}

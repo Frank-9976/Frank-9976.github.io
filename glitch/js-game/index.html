@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<!-- sources + some meta stuff -->
+<head>
+  <title>Bob the Red Box</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
+  <script>
+    <!--
+    window.onerror = function(e) {
+      var el = document.getElementById('onerror');
+      el.innerText = 'If you see this message, the dev may be editting the code right now, or there may be a bug.\n' + e.toString();
+    }
+    //-->
+  </script>
+</head>
+<body>
+  <!-- onerror box -->
+  <p id="onerror"></p>
+  <!-- instructions, now in menu -->
+  <header style="display:none;">
+    <ul id="help">
+      <li>wasd to move, click / k to shoot bullets, p to pause / unpause</li>
+      <li>downward button crouches / crouch jumps / floats / shields</li>
+      <li>space / l air dodges for those clutch situations</li>
+      <li>kill the enemies by shooting bullets at them to win</li>
+      <li>watch your health, if you die you have to restart the level</li>
+    </ul>
+    <ul id="credits">
+      <li>concept, coding, music, and SFX by <a href="https://www.youtube.com/channel/UCgxgkplOtvvStZMZTI-4dfw">keithPlayzStuff</a> AKA <a href="https://glitch.com/@Frank-9976">Frank-9976</a></li>
+      <li>artwork and some music by <a href="https://www.youtube.com/channel/UC17JPnpt11YRuD1zRwis8_g">GuestOS</a></li>
+      <li>testing and suggestions by viewers like you</li>
+    </ul>
+  </header>
+  <div>
+    TESTED ON CHROME
+    <!-- debug ->
+      <br>
+      <button onclick="t.typeIndex.enemy.map(i => t.remove(t.things[i]))">Kill All Enemies [DEBUG]</button>
+      <button onclick="if(window.b){Projectile.prototype.everyFrame=b;delete b}else{b=Projectile.prototype.everyFrame;Projectile.prototype.everyFrame=function(){this.container.remove(this)}}">Toggle Projectiles [DEBUG]</button>
+    <!-- -->
+  </div>
+  <!-- canvas -->
+  <canvas id="canvas" width="800" height="400" onclick="clearSelection()"></canvas>
+  <div id="assets" style="display:none;">
+    <!-- images -->
+    <img id="PlayerImg" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FPlayerImg.png">
+    <img id="ProjectileImg" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FProjectileImg.png?1">
+    <img id="WallImgs" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FWallImgs.png">
+    <img id="WetWallImgs" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FWetWallImgs.png">
+    <img id="PlantImgs" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FPlantImgs.png">
+    <img id="EnemyImg" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FEnemyImg.png?1">
+    <img id="Boss1Img" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FBoss1Img.png?1">
+    <img id="Boss2Img" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FBoss2Img.png?v=1">
+    <img id="HealImg" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FHealImg.png">
+    <img id="Background" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FBackground.png?13374">
+    <!-- data images -->
+    <img id="Level 1-1" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel1.png" crossorigin="anonymous">
+    <img id="Level 1-2" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel2.png?133" crossorigin="anonymous">
+    <img id="Level 1-3" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel3.png?133" crossorigin="anonymous"
+         alt="{&quot;ymax&quot;:&quot;imgheight&quot;}">
+    <img id="Level 1-4" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel4.png" crossorigin="anonymous">
+    <img id="Level 1-5" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel5.png?13237" crossorigin="anonymous">
+    <img id="Level 1-6" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel%201-6.png?71" crossorigin="anonymous"
+         alt="{&quot;etype&quot;:&quot;boss1&quot;}">
+    <img id="Level 2-1" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel%202-1.png?13371" crossorigin="anonymous"
+         alt="{&quot;fliercount&quot;:1}">
+    <img id="Level 2-2" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel%202-2.png?1" crossorigin="anonymous"
+         alt="{&quot;fliercount&quot;:2}">
+    <img id="Level 2-3" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel%202-3.png?1" crossorigin="anonymous"
+         alt="{&quot;ymax&quot;:&quot;imgheight&quot;}">
+    <img id="Level 2-4" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel%202-4.png" crossorigin="anonymous"
+         alt="{&quot;fliercount&quot;:1}">
+    <img id="Level 2-5" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2F2-5.png?1558912704610" crossorigin="anonymous"
+         alt="{&quot;ymax&quot;:&quot;imgheight&quot;}">
+    <img id="Level 2-6" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FLevel%202-6.png?v=1" crossorigin="anonymous"
+         alt="{&quot;etype&quot;:&quot;boss2&quot;}">
+    <!-- music -->
+    <audio id="Menu" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FMenuBetaMix2.mp3" loop></audio>
+    <audio id="BGM1" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FBGM1_Guest.mp3" loop></audio>
+    <audio id="BGM2" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2FBGM2_GuestOS.mp3" loop></audio>
+    <!-- sfx -->
+    <audio id="meta.pause" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fmeta-pause.mp3"></audio>
+    <audio id="meta.win" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fmeta-win.mp3"></audio>
+    <audio id="thing.recoil" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fthing-recoil.mp3"></audio>
+    <audio id="thing.shoot" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fthing-shoot.mp3"></audio>
+    <audio id="player.die" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fplayer-die.mp3"></audio>
+    <audio id="player.heal" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fplayer-heal.mp3"></audio>
+    <audio id="player.land" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fplayer-land.mp3"></audio>
+    <audio id="player.jump" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fplayer-jump.mp3"></audio>
+    <audio id="player.reflect" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fplayer-reflect.mp3"></audio>
+    <!--audio id="player.swim" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fplayer-swim.mp3"></audio-->
+    <audio id="enemy.die" src="https://cdn.glitch.com/28c8b052-7a39-4169-9818-6f8d44e76fdd%2Fenemy-die.mp3"></audio>
+  </div>
+</body>
+</html>

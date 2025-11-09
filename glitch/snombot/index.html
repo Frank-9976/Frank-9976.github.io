@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>snombot</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>  
+  <body>
+    <h>MAKE SNOMBA DISCORD ART</h> <br>
+    <input type="file" oninput="convertImages(this)" accept="image/*" multiple> <br>
+    <label for="sensitivity">0</label>
+    <input name="sensitivity" type="range" min="0" max="1" step="0.1" oninput="SENSITIVITY = parseFloat(this.value);">
+    <label for="sensitivity">1</label>
+    <label for="sensitivity">Light Sensitivity (Lower = Less White/Snomba, Higher = More Black/Snomba)</label>
+    <canvas id="canvas" width="32" height="32"></canvas>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
