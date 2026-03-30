@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TITLE</title>
+    <title>Untitled Blogpost</title>
     <meta property="og:title" content="Untitled Blogpost">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frank-9976.github.io/midpoint.html">
@@ -34,5 +34,25 @@
     For the sake of having names, say that $(A, \varphi)$ is an "$\omega$-module".
     This is a dumb name, but it will have to do.
     Again, recall that this blog post is untitled.
+    <h2>okay, what now?</h2>
+    Given an $\omega$-module $(A, \varphi)$, say that $\varphi$ is "commutative" if the following identity is satisfied: <br>
+      $\varphi(\varphi(x_{00}, x_{01}, x_{02}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \ldots)$
+    = $\varphi(\varphi(x_{00}, x_{10}, x_{20}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \ldots)$ <br><br>
+    That is, this identity should hold for all families $(x_{ij})$ of elements of $A$ indexed by $\omega \times \omega$.
+    Again, for the sake of having names, say that $(A, \varphi)$ with commutative $\varphi$ is a "commutative $\omega$-module".
+    <h2>do you actually have a motivation for this concept</h2>
+    Okay so, if we replace $\omega$ with some finite set $n = \{0, 1, 2, \ldots n-1\}$, then a commutative $n$-module is precisely a $\mathbb{Z}[f_0, f_1, \ldots, f_{n-1}]$-module.
+    In fact, we can reduct a commutative $\omega$-module to a $\mathbb{Z}[f_0, f_1, \ldots]$-module by defining <br>
+    $f_0 x := \varphi(x, 0, 0, 0, \ldots),$ <br>
+    $f_1 x := \varphi(0, x, 0, 0, \ldots),$ <br>
+    $f_2 x := \varphi(0, 0, x, 0, \ldots),$ <br><br>
+    so on and so forth.
+    The commutativity condition also guarantees similar things to the commutativity of a base ring.
+    For instance, define am $\omega$-module homomorphism $\ell \colon (A, \varphi_A) \rightarrow (B, \varphi_B)$ as a linear map satisfying <br>
+    $\ell(\varphi_A(x_0, x_1, \ldots)) = \varphi_B(\ell(x_0), \ell(x_1), \ldots)$ <br><br>
+    for all families $(x_i)$ of elements of $A$ indexed by $\omega$.
+    Then the set of $\omega$-module homomorphisms from $A$ to $B$ should itself have an $\omega$-module structure.
+    I'm not sure if this is significant at all, as I have not actually utilized this property while thinking about commutative $\omega$-modules.
+    But, it's certainly where my motivation came from.
   </body>
 </html>
