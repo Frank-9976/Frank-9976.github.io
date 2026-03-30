@@ -35,24 +35,37 @@
     This is a dumb name, but it will have to do.
     Again, recall that this blog post is untitled.
     <h2>okay, what now?</h2>
-    Given an $\omega$-module $(A, \varphi)$, say that $\varphi$ is "commutative" if the following identity is satisfied: <br>
-      $\varphi(\varphi(x_{00}, x_{01}, x_{02}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \ldots)$
-    = $\varphi(\varphi(x_{00}, x_{10}, x_{20}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \ldots)$ <br><br>
-    That is, this identity should hold for all families $(x_{ij})$ of elements of $A$ indexed by $\omega \times \omega$.
+    Given an $\omega$-module $(A, \varphi)$, say that $\varphi$ is "commutative" if the following identity is satisfied: <br><br>
+      $\varphi(\varphi(x_{00}, x_{01}, x_{02}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \varphi(x_{20}, x_{21}, x_{22}, \ldots), \ldots)$
+    = $\varphi(\varphi(x_{00}, x_{10}, x_{20}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \varphi(x_{02}, x_{12}, x_{22}, \ldots), \ldots)$ <br><br>
+    That is, this identity holds for all families $(x_{ij})$ of elements of $A$ indexed by $\omega \times \omega$.
     Again, for the sake of having names, say that $(A, \varphi)$ with commutative $\varphi$ is a "commutative $\omega$-module".
     <h2>do you actually have a motivation for this concept</h2>
     Okay so, if we replace $\omega$ with some finite set $n = \{0, 1, 2, \ldots n-1\}$, then a commutative $n$-module is precisely a $\mathbb{Z}[f_0, f_1, \ldots, f_{n-1}]$-module.
-    In fact, we can reduct a commutative $\omega$-module to a $\mathbb{Z}[f_0, f_1, \ldots]$-module by defining <br>
+    In fact, we can reduct (i.e. this destroys a lot of information) a commutative $\omega$-module to a $\mathbb{Z}[f_0, f_1, \ldots]$-module by defining <br><br>
     $f_0 x := \varphi(x, 0, 0, 0, \ldots),$ <br>
     $f_1 x := \varphi(0, x, 0, 0, \ldots),$ <br>
     $f_2 x := \varphi(0, 0, x, 0, \ldots),$ <br><br>
     so on and so forth.
     The commutativity condition also guarantees similar things to the commutativity of a base ring.
-    For instance, define am $\omega$-module homomorphism $\ell \colon (A, \varphi_A) \rightarrow (B, \varphi_B)$ as a linear map satisfying <br>
+    For instance, define an $\omega$-module homomorphism $\ell \colon (A, \varphi_A) \rightarrow (B, \varphi_B)$ as a linear map satisfying <br><br>
     $\ell(\varphi_A(x_0, x_1, \ldots)) = \varphi_B(\ell(x_0), \ell(x_1), \ldots)$ <br><br>
     for all families $(x_i)$ of elements of $A$ indexed by $\omega$.
     Then the set of $\omega$-module homomorphisms from $A$ to $B$ should itself have an $\omega$-module structure.
     I'm not sure if this is significant at all, as I have not actually utilized this property while thinking about commutative $\omega$-modules.
     But, it's certainly where my motivation came from.
+    <h2>okay, what now? (again)</h2>
+    The kicker is that I've actually proven an (in my opinion, beautiful) theorem that confines how wild a commutative $\omega$-module can be.
+    To state this theorem, I need yet another untitled concept, but this one is related to extension by $0$.
+    In particular, given a subset $C \subseteq \omega$, we can view $A^C \subseteq A^\omega$ via "extension by $0$".
+    In other words, we can fill in blank entries with $0$'s.
+    Thus, we can restrict $\varphi$ to $A^C$.
+    In fact, we did this earlier to produce the reduct, by letting $C$ be a singleton.
+    Again, again, for the sake of having names, notate this restriction as $\varphi_C$.
+    Then, I claim, for any commuative $\varphi$, we have <br><br>
+    \(\cap_{C \text{ cofinite}} \im \varphi_C \neq A.\) <br><br>
+    In other words, $\varphi$ must be "eventually non-surjective"!
+    <h2>whoa, that's so cool! tell me how you proved it, oh wise one</h2>
+    Firstly, thanks for the flattery.
   </body>
 </html>
