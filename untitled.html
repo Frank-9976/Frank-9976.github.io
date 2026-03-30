@@ -63,18 +63,70 @@
     In fact, we did this earlier to produce the reduct, by letting $C$ be a singleton.
     Again, again, for the sake of having names, notate this restriction as $\varphi_C$.
     Then, I claim, for any commuative $\varphi$, we have <br><br>
-    $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C \neq A.$$ <br><br>
+    $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C \neq A.$$ <br>
     In other words, $\varphi$ must be "eventually non-surjective"!
     <h2>whoa, that's so cool! tell me how you proved it, oh wise one</h2>
     Firstly, thanks for the flattery.
-    Secondly, we may prove the contrapositive, i.e., there must exist a witness $(x_{ij})$ to $\varphi$ failing to be commutative.
-    [INSERT PROOF HERE]
+    Secondly, we may prove the contrapositive, i.e., there must exist a witness $x = (x_{ij})$ to $\varphi$ failing to be commutative.
+    We can construct it "one row at a time":
+    To start, let $y = (y_i)$ be a family such that $\varphi(y) \neq 0$.
+    Then, let $(x_{0j})$ be a family such that $x_{00} = 0$ and $\varphi(x_0) = y_0$.
+    Then, let $(x_{1j})$ be a family such that $x_{10} = -x_{01}$, $x_{11} = 0$, and $\varphi(x_1) = y_1$.
+    Continue on in this way, each time using that $\varphi_C$ is surjective for cofinite $C$.
+    Eventually, we construct $x$ such that $\varphi(\varphi(x)) \neq 0$, but $(x_{ij}) + (x_{ji}) = 0$, (i.e. $x + x^T = 0$), so if $\varphi$ were commutative, $x$ would be in its kernel!
+    (Alternatively, we could have constructed $x$ by alternating adding rows and columns, but abusing linearity like this simplifies notation a little.)
     <h2>okay, what's the catch?</h2>
     Oh yeah, er... this inequality is very sharp.
-    [INSERT COUNTEREXAMPLES HERE] <br>
-    <h2>concrete examples</h2>
-    [INSERT Z/p EXAMPLES HERE] <br>
-    [INSERT Z EXAMPLES HERE] <br>
-    [INSERT Z_p EXAMPLES HERE]
+    The dumbest examples of commutative $\omega$-modules are constructed as follows:
+    let $(A, \varphi)$ be <i>any</i> $\omega$-module, i.e. it can be non-commutative.
+    Let <br><br>
+    $$0 \rightarrow A \rightarrow B \rightarrow A \rightarrow 0$$ <br>
+    be a short exact sequence of abelian groups.
+    We have the composition <br><br>
+    $$\varphi' \colon B^\omega \rightarrow A^\omega \rightarrow A \rightarrow B$$ <br>
+    which has the same image as $\varphi$; we also have $\varphi'(\varphi'(x)) = 0$ for all $x$, so $\varphi'$ is commutative.
+    (Note that this construction can never produce an example where $A = B \neq 0$.)
+    <h2>both dumb and non-dumb concrete examples</h2>
+    <ul>
+      <li>
+        Let $A = \mathbb{Z}/p$ for some prime $p > 0$.
+        $\omega$-module structures on $A$ in general can be very wild because of field theory nonsense.
+        However, because commutative $\omega$-modules must be eventually non-surjective, we have that $\varphi$ must actually have finite support!
+        Interestingly, one can show these are precisely the "constructable maps" in the sense that you don't need the axiom of choice to prove they exist.
+        Alternatively, they're precisely continuous maps, putting the product topology on $A^\omega$.
+      </li>
+      <li>
+        However, the fun does not last.
+        If we let $A = \mathbb{Z}/4$, using the "dumb" construction earlier, we can get very non-continuous but commutative $\omega$-modules on $A$.
+        This also works on $(\mathbb{Z}/2)^2$, etc.
+        I wish I knew how to fix this issue, but I don't have any natural ideas yet.
+      </li>
+      <li>
+        Interestingly, <i>any</i> $\omega$-module structure on $\mathbb{Z}$ is continuous.
+        This is group theory folklore, if you're curious about the details, search up the "Baer-Specker group".
+      </li>
+      <li>
+        Here's possibly the most interesting example: suppose that <br><br>
+        $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C = 0$$ <br>
+        so that we have <br><br>
+        $$A \cong \projlim_{C \text{ cofinite}} \operatorname{coker} \varphi_C.$$ <br>
+        Then we can actually describe such $\omega$-module structures via the universal property of projective limits.
+        In particular, $\varphi$ composed with a projection to any particular $\operatorname{coker} \varphi_C$ must be finitely supported.
+        However, as we look at weaker and weaker projections, the support can grow unbounded.
+        Thus, we get interesting examples, such as $\varphi$ being a "weighted sum" of, say, $p$-adic integers.
+      </li>
+      <li>
+        Of course, who doesn't want to look at the free object of a category?
+        Because our operation here is countable, our syntax trees can actually have depth indexed by $\omega_1$, the first uncountable ordinal.
+        That being said, although I haven't checked the fine details, I'm pretty sure one can still abstractly define the free $\omega$-module in terms of operations in the signature of abelian groups with $\varphi$ added.
+        We can also freely mod out by the commutativity condition to get the free commutative one.
+        I believe the free (possibly non-commutative) $\omega$-module on one generator can be viewed as a subring of <br><br>
+        $$\projlim \mathbb{Z}[f_0] \leftarrow \mathbb{Z}[f_0, f_1] \leftarrow \ldots$$ <br>
+        with each projection sending $f_n$ to $0$; we have $\varphi(x) = f_0 x_0 + f_1 x_1 + \ldots$, and we take the smallest subring closed under $\varphi$.
+        However, I haven't checked all the details.
+      </li>
+    </ul>
+    <h2>conclusion</h2>
+    I needed to put all my thoughts in one place, as usual. (lol!)
   </body>
 </html>
