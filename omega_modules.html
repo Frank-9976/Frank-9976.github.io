@@ -1,11 +1,11 @@
 <html>
   <head>
     <title>Untitled Blogpost</title>
-    <meta property="og:title" content="Untitled Blogpost">
+    <meta property="og:title" content="ω-modules">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://frank-9976.github.io/midpoint.html">
+    <meta property="og:url" content="https://frank-9976.github.io/omega_modules.html">
     <meta property="og:image" content="https://frank-9976.github.io/monkkey.png">
-    <meta property="og:description" content="This blog post does something I'm not sure how to describe yet.">
+    <meta property="og:description" content="This blog post discusses a concept I coined, ω-modules.">
     <meta property="og:site_name" content="Frank Blog (by keith)">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,17 +24,14 @@
     </script>
   </head>
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
-    <h1>untitled</h1>
-    Okay, I will say, I don't plan for this post to be untitled forever.
-    I just don't really know what snappy name I want to give this concept yet, so I'll just write it up first, and THEN give it a snappy name.
-    <h2>okay but what is this concept</h2>
+    <h1>$\omega$-modules</h1>
     Let $A$ be an abelian group.
     Let $\varphi \colon A^\omega \rightarrow A$ be a linear map from the direct product of countably many copies of $A$ to $A$ itself.
     We can regard $\varphi$ as an operation of countable arity.
     For the sake of having names, say that $(A, \varphi)$ is an "$\omega$-module".
-    This is a dumb name, but it will have to do.
-    Again, recall that this blog post is untitled.
-    <h2>okay, what now?</h2>
+    (To be clear, I made this term up.
+    But I don't know of a common name for this concept, so you'll have to bear with me.)
+    <h2>commutative $\omega$-modules</h2>
     Given an $\omega$-module $(A, \varphi)$, say that $\varphi$ is "commutative" if the following identity is satisfied: <br><br>
       $\varphi(\varphi(x_{00}, x_{01}, x_{02}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \varphi(x_{20}, x_{21}, x_{22}, \ldots), \ldots)$
     = $\varphi(\varphi(x_{00}, x_{10}, x_{20}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \varphi(x_{02}, x_{12}, x_{22}, \ldots), \ldots)$ <br><br>
@@ -54,6 +51,8 @@
     Then the set of $\omega$-module homomorphisms from $A$ to $B$ should itself have an $\omega$-module structure.
     I'm not sure if this is significant at all, as I have not actually utilized this property while thinking about commutative $\omega$-modules.
     But, it's certainly where my motivation came from.
+    (If you are not satisfied, here is a miscellaneous observation that does not fit into the rest of this post:
+    the commutativity condition sort of resembles fubini's theorem, in the sense that an $\omega$-module can be thought of as an infinite weighted sum.)
     <h2>okay, what now? (again)</h2>
     The kicker is that I've actually proven an (in my opinion, beautiful) theorem that confines how wild a commutative $\omega$-module can be.
     To state this theorem, I need yet another untitled concept, but this one is related to extension by $0$.
@@ -62,28 +61,60 @@
     Thus, we can restrict $\varphi$ to $A^C$.
     In fact, we did this earlier to produce the reduct, by letting $C$ be a singleton.
     Again, again, for the sake of having names, notate this restriction as $\varphi_C$.
-    Then, I claim, for any commuative $\varphi$, we have <br><br>
+    Then, I claim, (when $A \neq 0$), for any commuative $\varphi$, we have <br><br>
     $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C \neq A.$$ <br>
     In other words, $\varphi$ must be "eventually non-surjective"!
     <h2>whoa, that's so cool! tell me how you proved it, oh wise one</h2>
     Firstly, thanks for the flattery.
     Secondly, we may prove the contrapositive, i.e., there must exist a witness $x = (x_{ij})$ to $\varphi$ failing to be commutative.
-    We can construct it "one row at a time":
+    We can construct it "one row and column at a time":
     To start, let $y = (y_i)$ be a family such that $\varphi(y) \neq 0$.
-    Then, let $(x_{0j})$ be a family such that $x_{00} = 0$ and $\varphi(x_0) = y_0$.
-    Then, let $(x_{1j})$ be a family such that $x_{10} = -x_{01}$, $x_{11} = 0$, and $\varphi(x_1) = y_1$.
+    Our goal will be to have $\varphi(x) = 0$ one way and $\varphi(x) = y$ the other way.
+    Firstly, let $(x_{0j})$ be a family such that $\varphi(x_{0j}) = y_0$.
+    We can visualize what we're doing via this table: <br> <br>
+    $\begin{array}{c | c c c c c}
+    \varphi & ? & ? & ? \\
+    \hline
+    \mathbf{y_0} & \mathbf{x_{00}} & \mathbf{x_{01}} & \mathbf{x_{02}} \\
+    ? & ? & ? & ? \\
+    ? & ? & ? & ? \\
+    \end{array}$ <br> <br>
+    Then, let $(x_{j0})$ be a family such that $\varphi(x_{j0}) = 0$.
+    Here is the table visualization: <br> <br>
+    $\begin{array}{c | c c c c c}
+    \varphi & \mathbf{0} & ? & ? \\
+    \hline
+    y_0 & x_{00} & x_{01} & x_{02} \\
+    ? & \mathbf{x_{10}} & ? & ? \\
+    ? & \mathbf{x_{20}} & ? & ? \\
+    \end{array}$ <br> <br>
     Continue on in this way, each time using that $\varphi_C$ is surjective for cofinite $C$.
-    Eventually, we construct $x$ such that $\varphi(\varphi(x)) \neq 0$, but $x$ can be written as the sum of its upper right and bottom left parts, with one being the negative transpose of the other, so if $\varphi$ were commutative, $x$ would be in its kernel!
-    (Alternatively, we could have constructed $x$ by alternating adding rows and columns, but abusing linearity like this simplifies notation a little.)
+    Here are the further visualizations: <br> <br>
+    $\begin{array}{c | c c c c c}
+    \varphi & 0 & ? & ? \\
+    \hline
+    y_0 & x_{00} & x_{01} & x_{02} \\
+    \mathbf{y_1} & x_{10} & \mathbf{x_{11}} & \mathbf{x_{12}} \\
+    ? & x_{20} & ? & ? \\
+    \end{array}$ <br> <br>
+    $\begin{array}{c | c c c c c}
+    \varphi & 0 & \mathbf{0} & ? \\
+    \hline
+    y_0 & x_{00} & x_{01} & x_{02} \\
+    y_1 & x_{10} & x_{11} & x_{12} \\
+    ? & x_{20} & \mathbf{x_{21}} & ? \\
+    \end{array}$ <br> <br>
+    etc., so on and so forth.
+    Once this is all done, we have $x$ as desired!
     <h2>okay, what's the catch?</h2>
     Oh yeah, er... this inequality is very sharp.
     The dumbest examples of commutative $\omega$-modules are constructed as follows:
     let $(A, \varphi)$ be <i>any</i> $\omega$-module, i.e. it can be non-commutative.
     Let <br><br>
-    $$0 \rightarrow A \rightarrow B \rightarrow A \rightarrow 0$$ <br>
+    $$0 \rightarrow A \xrightarrow{\iota} B \xrightarrow{\rho} A \rightarrow 0$$ <br>
     be a short exact sequence of abelian groups.
     We have the composition <br><br>
-    $$\varphi' \colon B^\omega \rightarrow A^\omega \rightarrow A \rightarrow B$$ <br>
+    $$\varphi' \colon B^\omega \xrightarrow{\rho^\omega} A^\omega \xrightarrow{\varphi} A \xrightarrow{\iota} B$$ <br>
     which has the same image as $\varphi$; we also have $\varphi'(\varphi'(x)) = 0$ for all $x$, so $\varphi'$ is commutative.
     (Note that this construction can never produce an example where $A = B \neq 0$.)
     <h2>both dumb and non-dumb concrete examples</h2>
@@ -91,6 +122,8 @@
       <li>
         Let $A = \mathbb{Z}/p$ for some prime $p > 0$.
         $\omega$-module structures on $A$ in general can be very wild because of field theory nonsense.
+        In particular, we can think of $A^\omega$ as a vector space over $\mathbb{F}_p$, so it has a basis which uniquely determines maps out of it.
+        This basis is very non-canonical and requires the axiom of choice to construct.
         However, because commutative $\omega$-modules must be eventually non-surjective, we have that $\varphi$ must actually have finite support!
         Interestingly, one can show these are precisely the "constructable maps" in the sense that you don't need the axiom of choice to prove they exist.
         Alternatively, they're precisely continuous maps, putting the product topology on $A^\omega$.
@@ -109,7 +142,7 @@
         Here's possibly the most interesting example: suppose that <br><br>
         $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C = 0$$ <br>
         so that we have <br><br>
-        $$A \cong \projlim_{C \text{ cofinite}} \operatorname{coker} \varphi_C.$$ <br>
+        $$A \subseteq \projlim_{C \text{ cofinite}} \operatorname{coker} \varphi_C.$$ <br>
         Then we can actually describe such $\omega$-module structures via the universal property of projective limits.
         In particular, $\varphi$ composed with a projection to any particular $\operatorname{coker} \varphi_C$ must be finitely supported.
         However, as we look at weaker and weaker projections, the support can grow unbounded.
