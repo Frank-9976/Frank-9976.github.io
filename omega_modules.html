@@ -25,12 +25,18 @@
   </head>
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
     <h1>$\omega$-modules</h1>
-    <h2>definition: $\omega$-module</h2>
-    Say that $(A, \varphi)$ is an "$\omega$-module" if $A$ is an abelian group
-    and $\varphi \colon A^\omega \rightarrow A$ is a linear map from the direct product of countably many copies of $A$ to $A$ itself. <br>
-    We can regard $\varphi$ as an operation of countable arity.
-    (To be clear, I made this term up.
-    But I don't know of a common name for this concept, so you'll have to bear with me.)
+    <h3>definition: $\omega$-module</h3>
+    Define an "$\omega$-module" as a tuple $(A, \varphi)$ such that
+    <ul>
+      <li>
+        $A$ is an abelian group
+      </li>
+      <li>
+        $\varphi \colon A^\omega \rightarrow A$ is a linear map (where $A^\omega$ is the direct product, <i>not</i> the direct sum)
+      </li>
+    </ul><br><br>
+    We can regard $\varphi$ as an operation of countable arity on $A$.
+    (To be clear, I made this term up. But I don't know of a common name for this concept, so you'll have to bear with me.)
     <h2>commutative $\omega$-modules</h2>
     Given an $\omega$-module $(A, \varphi)$, say that $\varphi$ is "commutative" if the following identity is satisfied: <br><br>
       $\varphi(\varphi(x_{00}, x_{01}, x_{02}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \varphi(x_{20}, x_{21}, x_{22}, \ldots), \ldots)$
