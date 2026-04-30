@@ -73,11 +73,11 @@
     Firstly, let $(x_{0j})$ be a family such that $\varphi(x_{0j}) = y_0$.
     We can visualize what we're doing via this table: <br> <br>
     $\begin{array}{c | c c c c c}
-    \varphi & ? & ? & ? & \ldots \\
+    \varphi & ? & ? & ? & \cdots \\
     \hline
-    \mathbf{y_0} & \mathbf{x_{00}} & \mathbf{x_{01}} & \mathbf{x_{02}} & \ldots \\
-    ? & ? & ? & ? & \ldots \\
-    ? & ? & ? & ? & \ldots \\
+    \mathbf{y_0} & \mathbf{x_{00}} & \mathbf{x_{01}} & \mathbf{x_{02}} & \mathbf{\cdots} \\
+    ? & ? & ? & ? & \cdots \\
+    ? & ? & ? & ? & \cdots \\
     \vdots & \vdots & \vdots & \vdots & \ddots \\
     \end{array}$ <br> <br>
     The $?$ represent values we haven't filled in yet, and the bolded variables are what we just filled in.
@@ -85,30 +85,30 @@
     We can do this because $\varphi_{\{1, 2, 3, \ldots\}}$ is surjective, so we can always "adjust" our value to compensate for $\varphi(x_{00}, 0, 0, \ldots)$.
     Here is the table visualization: <br> <br>
     $\begin{array}{c | c c c c c}
-    \varphi & \mathbf{0} & ? & ? & \ldots \\
+    \varphi & \mathbf{0} & ? & ? & \cdots \\
     \hline
-    y_0 & x_{00} & x_{01} & x_{02} & \ldots \\
-    ? & \mathbf{x_{10}} & ? & ? & \ldots \\
-    ? & \mathbf{x_{20}} & ? & ? & \ldots \\
-    \vdots & \vdots & \vdots & \vdots & \ddots \\
+    y_0 & x_{00} & x_{01} & x_{02} & \cdots \\
+    ? & \mathbf{x_{10}} & ? & ? & \cdots \\
+    ? & \mathbf{x_{20}} & ? & ? & \cdots \\
+    \vdots & \mathbf{\vdots} & \vdots & \vdots & \ddots \\
     \end{array}$ <br> <br>
     Continue on in this way, each time using that $\varphi_C$ is surjective for cofinite $C$.
     Here are the further visualizations: <br> <br>
     $\begin{array}{c | c c c c c}
-    \varphi & 0 & ? & ? & \ldots \\
+    \varphi & 0 & ? & ? & \cdots \\
     \hline
-    y_0 & x_{00} & x_{01} & x_{02} & \ldots \\
-    \mathbf{y_1} & x_{10} & \mathbf{x_{11}} & \mathbf{x_{12}} & \ldots \\
-    ? & x_{20} & ? & ? & \ldots \\
+    y_0 & x_{00} & x_{01} & x_{02} & \cdots \\
+    \mathbf{y_1} & x_{10} & \mathbf{x_{11}} & \mathbf{x_{12}} & \mathbf{\cdots} \\
+    ? & x_{20} & ? & ? & \cdots \\
     \vdots & \vdots & \vdots & \vdots & \ddots \\
     \end{array}$ <br> <br>
     $\begin{array}{c | c c c c c}
-    \varphi & 0 & \mathbf{0} & ? & \ldots \\
+    \varphi & 0 & \mathbf{0} & ? & \cdots \\
     \hline
-    y_0 & x_{00} & x_{01} & x_{02} & \ldots \\
-    y_1 & x_{10} & x_{11} & x_{12} & \ldots \\
-    ? & x_{20} & \mathbf{x_{21}} & ? & \ldots \\
-    \vdots & \vdots & \vdots & \vdots & \ddots \\
+    y_0 & x_{00} & x_{01} & x_{02} & \cdots \\
+    y_1 & x_{10} & x_{11} & x_{12} & \cdots \\
+    ? & x_{20} & \mathbf{x_{21}} & ? & \cdots \\
+    \vdots & \vdots & \mathbf{\vdots} & \vdots & \ddots \\
     \end{array}$ <br> <br>
     etc., so on and so forth.
     Once this is all done, we have $x$ as desired!
