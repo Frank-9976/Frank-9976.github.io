@@ -39,12 +39,26 @@
     We can regard $\varphi$ as an operation of countable arity on $A$.
     (To be clear, I made up the term "$\omega$-module". But I don't know of a common name for this concept, so it'll have to do.)
     <h2>commutative $\omega$-modules</h2>
-    Given an $\omega$-module $(A, \varphi)$, say that $\varphi$ is "commutative" if the following identity is satisfied: <br><br>
+    <h3>definition: commutative $\omega$-module</h3>
+    Define a "commutative $\omega$-module" as an $\omega$-module $(A, \varphi)$ such that, for all families $(x_{ij} \in A)_{i, j \in \omega}$, <br><br>
       $\varphi(\varphi(x_{00}, x_{01}, x_{02}, \ldots), \varphi(x_{10}, x_{11}, x_{12}, \ldots), \varphi(x_{20}, x_{21}, x_{22}, \ldots), \ldots)$
     = $\varphi(\varphi(x_{00}, x_{10}, x_{20}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \varphi(x_{02}, x_{12}, x_{22}, \ldots), \ldots)$ <br><br>
-    That is, this identity holds for all families $(x_{ij})$ of elements of $A$ indexed by $\omega \times \omega$.
-    Again, for the sake of having names, say that $(A, \varphi)$ with commutative $\varphi$ is a "commutative $\omega$-module".
-    <h2>do you actually have a motivation for this concept</h2>
+    Then we also say $\varphi$ is "commutative".
+    <h3>end of definition</h3>
+    Visually, this equational identity tells us that the two natural ways to evaluate $\varphi$ on a 2D table, actually agree:
+
+    <!--table-->
+    $\begin{array}{c | c c c c c}
+    ??? & \varphi(x_{00}, x_{10}, x_{20}, \ldots) & \varphi(x_{01}, x_{11}, x_{21}, \ldots) & \varphi(x_{02}, x_{12}, x_{22}, \ldots), \ldots) & \cdots \\
+    \hline
+    \varphi(x_{00}, x_{01}, x_{02}, \ldots) & x_{00} & x_{01} & x_{02} & \cdots \\
+    \varphi(x_{10}, x_{11}, x_{12}, \ldots) & x_{10} & x_{11} & x_{12} & \cdots \\
+    \varphi(x_{20}, x_{21}, x_{22}, \ldots) & x_{20} & x_{21} & x_{22} & \cdots \\
+    \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{array}$ <br> <br>
+
+    We can either apply $\varphi$ to rows, then columns, or columns, then rows, and it doesn't matter.
+    <h2>do you actually have a motivation for this concept (you can safely skip this if you don't care)</h2>
     Okay so, if we replace $\omega$ with some finite set $n = \{0, 1, 2, \ldots n-1\}$, then a commutative $n$-module is precisely a $\mathbb{Z}[f_0, f_1, \ldots, f_{n-1}]$-module.
     In fact, we can reduct (i.e. this destroys a lot of information) a commutative $\omega$-module to a $\mathbb{Z}[f_0, f_1, \ldots]$-module by defining <br><br>
     $f_0 x := \varphi(x, 0, 0, 0, \ldots),$ <br>
@@ -54,26 +68,30 @@
     The commutativity condition also guarantees similar things to the commutativity of a base ring.
     For instance, define an $\omega$-module homomorphism $\ell \colon (A, \varphi_A) \rightarrow (B, \varphi_B)$ as a linear map satisfying <br><br>
     $\ell(\varphi_A(x_0, x_1, \ldots)) = \varphi_B(\ell(x_0), \ell(x_1), \ldots)$ <br><br>
-    for all families $(x_i)$ of elements of $A$ indexed by $\omega$.
+    for all families $(x_i \in A)_{i \in \omega}$.
     Then the set of $\omega$-module homomorphisms from $A$ to $B$ should itself have an $\omega$-module structure.
     I'm not sure if this is significant at all, as I have not actually utilized this property while thinking about commutative $\omega$-modules.
     But, it's certainly where my motivation came from.
     (If you are not satisfied, here is a miscellaneous observation that does not fit into the rest of this post:
     the commutativity condition sort of resembles fubini's theorem, in the sense that an $\omega$-module can be thought of as an infinite weighted sum.)
-    <h2>okay, what now? (again)</h2>
-    The kicker is that I've actually proven an (in my opinion, beautiful) theorem that confines how wild a commutative $\omega$-module can be.
-    To state this theorem, I need yet another untitled concept, but this one is related to extension by $0$.
-    In particular, given a subset $C \subseteq \omega$, we can view $A^C \subseteq A^\omega$ via "extension by $0$".
-    In other words, we can fill in blank entries with $0$'s.
-    Thus, we can restrict $\varphi$ to $A^C$.
-    In fact, we did this earlier to produce the reduct, by letting $C$ be a singleton.
-    Again, again, for the sake of having names, notate this restriction as $\varphi_C$.
-    Then, I claim, (when $A \neq 0$), for any commuative $\varphi$, we have <br><br>
-    $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C \neq A.$$ <br>
-    In other words, $\varphi$ must be "eventually non-surjective"!
-    <h2>whoa, that's so cool! tell me how you proved it, oh wise one</h2>
-    Firstly, thanks for the flattery.
-    Secondly, we may prove the contrapositive, i.e., there must exist a witness $x = (x_{ij})$ to $\varphi$ failing to be commutative.
+    <h2>a nice result</h2>
+    Before I can state a nice result I proved, I need to give a few more definitions.
+    <h3>definition: $A^C$</h3>
+    Given a subset $C \subseteq \omega$, define $A^C := \{(x_i) \in A^\omega | \forall i \notin C, x_i = 0\}$
+    <h3>end of definition</h3>
+    This is often called "extension by 0", it is the submodule of $A^\omega$ consisting of elements whose support is contained in $C$.
+    Because $A^C \subseteq A^\omega$, we can restrict $\varphi$ to $A^C$.
+    For convenience, I will introduce the following notation:
+    <h3>definition: $\varphi_C$</h3>
+    Given a subset $C \subseteq \omega$ and an $\omega$-module $(A, \varphi)$, define $\varphi_C := \varphi |_{A^C}$
+    <h3>end of definition</h3>
+    <h3>theorem: commutative $\omega$-modules are "eventually non-surjective"</h3>
+    Given a commutative $\omega$-module $(A, \varphi)$, if <br><br>
+    $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C = A,$$ <br>
+    then $A = 0$.
+    <h3>end of theorem statement</h3>
+    <h2>the proof of this theorem</h2>
+    We may prove the contrapositive, i.e., there must exist a witness $x = (x_{ij})$ to $\varphi$ failing to be commutative.
     We can construct it "one row and column at a time":
     To start, let $y = (y_i)$ be a family such that $\varphi(y) \neq 0$.
     Our goal will be to have $\varphi(x) = 0$ when $\varphi$ is applied by columns and $\varphi(x) = y$ when $\varphi$ is applied by rows.
