@@ -182,16 +182,22 @@
         This is group theory folklore, if you're curious about the details, search up the "Baer-Specker group".
       </li>
       <li>
-        Here's possibly the most interesting example: suppose that [redacted]
+        Here's possibly the most interesting example: suppose that <br><br>
+        $$A \cong \varprojlim A_0 \leftarrow A_1 \leftarrow \ldots.$$ <br>
+        Then, by the universal property of limits, maps $\varphi \colon A^\omega \rightarrow A$ are determined by a family of compatible maps $A^\omega \rightarrow A_i$ for all $i \in \omega$.
+        Additionally, we always have natural projection maps $A^\omega \rightarrow A$ and $A \rightarrow A_i$, and we can always add them together.
+        The end result is a huge zoo of examples of commutative $\omega$-modules.
+        A good example is when $A = \mathbb{Z}_p$, the $p$-adics, where we define $\varphi(x_0, x_1, x_2, \ldots) := x_0 + p x_1 + p^2 x_2 + \ldots$.
+        This recovers the "weighted sum" intuition mentioned briefly in the motivation section.
       </li>
       <li>
         Of course, who doesn't want to look at the free object of a category?
-        Because our operation here has countable arity, our syntax trees can actually have depth indexed by $\omega_1$, the first uncountable ordinal.
+        Because our operation here has countable arity, our syntax trees can actually have depth indexed by $\omega_1,$ the first uncountable ordinal.
         That being said, although I haven't checked the fine details, I'm pretty sure one can still abstractly define the free $\omega$-module in terms of operations in the signature of abelian groups with $\varphi$ added.
-        (Of course, using the definition of an $\omega$-module homomorphism provided earlier, so that a "free" $\omega$-module would be a well-defined concept.)
+        (Of course, we would be using the definition of an $\omega$-module homomorphism provided earlier, so that a "free" $\omega$-module would be a well-defined concept.)
         We can also freely mod out by the commutativity condition to get the free commutative $\omega$-module from the free non-commutative one.
         I believe the free commutative $\omega$-module on one generator can be viewed as a subring of <br><br>
-        $$\projlim \mathbb{Z}[f_0] \leftarrow \mathbb{Z}[f_0, f_1] \leftarrow \ldots$$ <br>
+        $$\varprojlim \mathbb{Z}[f_0] \leftarrow \mathbb{Z}[f_0, f_1] \leftarrow \ldots$$ <br>
         with each projection sending $f_n$ to $0$; we have $\varphi(x) = f_0 x_0 + f_1 x_1 + \ldots$, and we take the smallest subring closed under $\varphi$.
         However, I haven't checked all the details.
       </li>
