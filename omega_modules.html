@@ -45,11 +45,11 @@
     = $\varphi(\varphi(x_{00}, x_{10}, x_{20}, \ldots), \varphi(x_{01}, x_{11}, x_{21}, \ldots), \varphi(x_{02}, x_{12}, x_{22}, \ldots), \ldots)$ <br><br>
     Then we also say $\varphi$ is "commutative".
     <h3>end of definition</h3>
-    Visually, this equational identity tells us that the two natural ways to evaluate $\varphi$ on a 2D table, actually agree:
+    Visually, this equational identity tells us that the two natural ways to evaluate $\varphi$ on a 2D table, actually agree: <br>
 
     <!--table-->
     $\begin{array}{c | c c c c c}
-    ??? & \varphi(x_{00}, x_{10}, x_{20}, \ldots) & \varphi(x_{01}, x_{11}, x_{21}, \ldots) & \varphi(x_{02}, x_{12}, x_{22}, \ldots), \ldots) & \cdots \\
+    ??? & \varphi(x_{00}, x_{10}, x_{20}, \ldots) & \varphi(x_{01}, x_{11}, x_{21}, \ldots) & \varphi(x_{02}, x_{12}, x_{22}, \ldots) & \cdots \\
     \hline
     \varphi(x_{00}, x_{01}, x_{02}, \ldots) & x_{00} & x_{01} & x_{02} & \cdots \\
     \varphi(x_{10}, x_{11}, x_{12}, \ldots) & x_{10} & x_{11} & x_{12} & \cdots \\
@@ -57,7 +57,7 @@
     \vdots & \vdots & \vdots & \vdots & \ddots \\
     \end{array}$ <br> <br>
 
-    We can either apply $\varphi$ to rows, then columns, or columns, then rows, and it doesn't matter.
+    We can either apply $\varphi$ to rows, then columns, or columns, then rows, and it doesn't matter, the result in the spot marked with $???$ will be the same.
     <h2>do you actually have a motivation for this concept (you can safely skip this if you don't care)</h2>
     Okay so, if we replace $\omega$ with some finite set $n = \{0, 1, 2, \ldots n-1\}$, then a commutative $n$-module is precisely a $\mathbb{Z}[f_0, f_1, \ldots, f_{n-1}]$-module.
     In fact, we can reduct (i.e. this destroys a lot of information) a commutative $\omega$-module to a $\mathbb{Z}[f_0, f_1, \ldots]$-module by defining <br><br>
@@ -66,9 +66,11 @@
     $f_2 x := \varphi(0, 0, x, 0, \ldots),$ <br><br>
     so on and so forth.
     The commutativity condition also guarantees similar things to the commutativity of a base ring.
-    For instance, define an $\omega$-module homomorphism $\ell \colon (A, \varphi_A) \rightarrow (B, \varphi_B)$ as a linear map satisfying <br><br>
-    $\ell(\varphi_A(x_0, x_1, \ldots)) = \varphi_B(\ell(x_0), \ell(x_1), \ldots)$ <br><br>
-    for all families $(x_i \in A)_{i \in \omega}$.
+    For instance,
+    <h3>definition: $\omega$-module homomorphism</h3>
+    Define an "$\omega$-module homomorphism" $\ell \colon (A, \varphi_A) \rightarrow (B, \varphi_B)$ as a linear map $A \rightarrow B$ satisfying, for all families $(x_i \in A)_{i \in \omega}$,<br><br>
+    $\ell(\varphi_A(x_0, x_1, x_2, \ldots)) = \varphi_B(\ell(x_0), \ell(x_1), \ell(x_2), \ldots)$ <br><br>
+    <h3>end of definition</h3>
     Then the set of $\omega$-module homomorphisms from $A$ to $B$ should itself have an $\omega$-module structure.
     I'm not sure if this is significant at all, as I have not actually utilized this property while thinking about commutative $\omega$-modules.
     But, it's certainly where my motivation came from.
@@ -79,16 +81,15 @@
     <h3>definition: $A^C$</h3>
     Given a subset $C \subseteq \omega$, define $A^C := \{(x_i) \in A^\omega | \forall i \notin C, x_i = 0\}$
     <h3>end of definition</h3>
-    This is often called "extension by 0", it is the submodule of $A^\omega$ consisting of elements whose support is contained in $C$.
+    In English, $A^C$ is the submodule of $A^\omega$ consisting of elements whose support is contained in $C$.
+    This is sometimes called "extension by 0".
     Because $A^C \subseteq A^\omega$, we can restrict $\varphi$ to $A^C$.
     For convenience, I will introduce the following notation:
     <h3>definition: $\varphi_C$</h3>
     Given a subset $C \subseteq \omega$ and an $\omega$-module $(A, \varphi)$, define $\varphi_C := \varphi |_{A^C}$
     <h3>end of definition</h3>
     <h3>theorem: commutative $\omega$-modules are "eventually non-surjective"</h3>
-    Given a commutative $\omega$-module $(A, \varphi)$, if <br><br>
-    $$\bigcap_{C \text{ cofinite}} \operatorname{im} \varphi_C = A,$$ <br>
-    then $A = 0$.
+    Given a commutative $\omega$-module $(A, \varphi)$, if $\varphi_C$ is surjective for all cofinte $C$, then $A = 0$.
     <h3>end of theorem statement</h3>
     <h2>the proof of this theorem</h2>
     We may prove the contrapositive, i.e., there must exist a witness $x = (x_{ij})$ to $\varphi$ failing to be commutative.
@@ -100,7 +101,7 @@
 
     <!--table-->
     $\begin{array}{c | c c c c c}
-    \varphi & ? & ? & ? & \cdots \\
+    ??? & ? & ? & ? & \cdots \\
     \hline
     \mathbf{y_0} & \mathbf{x_{00}} & \mathbf{x_{01}} & \mathbf{x_{02}} & \boldsymbol{\cdots} \\
     ? & ? & ? & ? & \cdots \\
@@ -115,7 +116,7 @@
 
     <!--table-->
     $\begin{array}{c | c c c c c}
-    \varphi & \mathbf{0} & ? & ? & \cdots \\
+    ??? & \mathbf{0} & ? & ? & \cdots \\
     \hline
     y_0 & x_{00} & x_{01} & x_{02} & \cdots \\
     ? & \mathbf{x_{10}} & ? & ? & \cdots \\
@@ -128,7 +129,7 @@
 
     <!--table-->
     $\begin{array}{c | c c c c c}
-    \varphi & 0 & ? & ? & \cdots \\
+    ??? & 0 & ? & ? & \cdots \\
     \hline
     y_0 & x_{00} & x_{01} & x_{02} & \cdots \\
     \mathbf{y_1} & x_{10} & \mathbf{x_{11}} & \mathbf{x_{12}} & \boldsymbol{\cdots} \\
@@ -138,7 +139,7 @@
 
     <!--table-->
     $\begin{array}{c | c c c c c}
-    \varphi & 0 & \mathbf{0} & ? & \cdots \\
+    ??? & 0 & \mathbf{0} & ? & \cdots \\
     \hline
     y_0 & x_{00} & x_{01} & x_{02} & \cdots \\
     y_1 & x_{10} & x_{11} & x_{12} & \cdots \\
