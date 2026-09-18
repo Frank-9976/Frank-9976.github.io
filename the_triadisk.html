@@ -11,7 +11,9 @@
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
     <h1>THE TRIADISK</h1>
     <canvas id="canvas" width="400" height="400"></canvas>
-    <p id="output">note: you may need to click the page to enable audio</p>
+    <p id="output"></p>
+    volume
+    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0">
     <script>
         const cvs = document.getElementById('canvas');
         const ctx = cvs.getContext('2d');
@@ -19,6 +21,7 @@
         ctx.stroke();
 
         const output = document.getElementById('output');
+        const base_gain_el = document.getElementById('base_gain');
 
         const audio_ctx = new AudioContext();
         const oscillators = Array(30);
@@ -27,7 +30,6 @@
         let prev_angle = 0;
         let root_note = 440;
 
-        // stupid boilerplate shit
         cvs.addEventListener('mousemove', event => {
             const rect = canvas.getBoundingClientRect();
             const x = event.clientX - rect.left - 200;
@@ -74,7 +76,7 @@
                         oscillators[i] = audio_ctx.createOscillator();
 
                         gain_nodes[i] = audio_ctx.createGain();
-                        gain_nodes[i].gain.setValueAtTime(0.1 * gains[i], audio_ctx.currentTime);
+                        gain_nodes[i].gain.setValueAtTime(base_gain_el.value * gains[i], audio_ctx.currentTime);
                         oscillators[i].connect(gain_nodes[i]);
 
                         gain_nodes[i].connect(audio_ctx.destination);
