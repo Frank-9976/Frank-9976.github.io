@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>THE TRIADISK</title>
+    <meta property="og:title" content="THE TRIADISK">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frank-9976.github.io/midpoint.html">
+    <meta property="og:image" content="https://frank-9976.github.io/monkkey.png">
+    <meta property="og:description" content="This is THE TRIADISK">
+    <meta property="og:site_name" content="Frank Blog (by keith)">
+  </head>
+  <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
+    <h1>THE TRIADISK</h1>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <p id="output"></p>
+    <script>
+        const cvs = document.getElementById('canvas');
+        const ctx = cvs.getContext('2d');
+        ctx.arc(200, 200, 190, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        const output = document.getElementById('output');
+
+        const audio_ctx = new AudioContext();
+        const oscillators = Array(30);
+        const gain_nodes = Array(30);
+        let is_playing = false;
+        let prev_angle = 0;
+        let root_note = 440;
+
+        // stupid boilerplate shit
+        cvs.addEventListener('mousemove', event => {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left - 200;
+            const y = event.clientY - rect.top - 200;
+        
+            const distance = 1 - Math.sqrt(x ** 2 + y ** 2) / 190;
+            if (distance < 0) {
+                if (is_playing) {
+                    for (let i = 0; i < oscillators.length; i++) {
+                        oscillators[i].disconnect();
+                        oscillators[i].stop();
+                    }
+                    is_playing = false;
+                }
+            }
+            else {
+                const angle = (Math.atan2(y, x) + Math.PI) / (2 * Math.PI);
+                if (is_playing) {
+                    if (angle - prev_angle > 0.5) {
+                        root_note *= 2 ** (1/3 * distance);
+                        if (root_note > 880) root_note /= 2;
+                    }
+                    if (angle - prev_angle < -0.5) {
+                        root_note /= 2 ** (1/3 * distance);
+                        if (root_note < 220) root_note *= 2;
+                    }
+                }
+                prev_angle = angle;
+
+                let pitches = [0, 1/3 * distance, 2/3 * distance + (1 - distance) * angle];
+                let gains = [1, 1, 1];
+                output.innerText = 'distance: ' + distance + '\nangle: ' + angle
+                    + '\nratio 1: ' + 2 ** pitches[1] + '\nratio 2: ' + 2 ** pitches[2];
+                
+                const octave_offsets = [-4, -3, -2, -1, 1, 2, 3, 4, 5];
+                for (let i = 0; i < octave_offsets.length; i++) {
+                    const offset = octave_offsets[i];
+                    pitches = pitches.concat([pitches[0] + offset, pitches[1] + offset, pitches[2] + offset]);
+                    gains = gains.concat(Array(3).fill(0.8 ** Math.abs(offset)));
+                }
+
+                if (!is_playing) {
+                    for (let i = 0; i < oscillators.length; i++) {
+                        oscillators[i] = audio_ctx.createOscillator();
+
+                        gain_nodes[i] = audio_ctx.createGain();
+                        gain_nodes[i].gain.setValueAtTime(0.1 * gains[i], audio_ctx.currentTime);
+                        oscillators[i].connect(gain_nodes[i]);
+
+                        gain_nodes[i].connect(audio_ctx.destination);
+                        oscillators[i].start();
+                    }
+                    is_playing = true;
+                }
+                for (let i = 0; i < oscillators.length; i++) {
+                    oscillators[i].frequency.setValueAtTime(root_note * 2 ** pitches[i], audio_ctx.currentTime);
+                }
+            }
+        });
+    </script>
+  </body>
+</html>
