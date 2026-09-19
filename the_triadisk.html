@@ -7,6 +7,21 @@
     <meta property="og:image" content="https://frank-9976.github.io/monkkey.png">
     <meta property="og:description" content="This is THE TRIADISK">
     <meta property="og:site_name" content="Frank Blog (by keith)">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        chtml: {
+          scale: 0.8
+        },
+        loader: {
+          load: ['[tex]/ams']
+        }
+      };
+    </script>
   </head>
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
     <h1>THE TRIADISK</h1>
@@ -133,5 +148,35 @@
             }
         });
     </script>
+    <h2>what the heck is this?</h2>
+    <p>
+        A musical note is often described entirely by its pitch, which is measured in hertz, written Hz for short.
+        Although the Hz of a note can be any positive real number, musically, if two notes differ in Hz by a factor of two, they sound very similar.
+        Therefore, we can model the "moduli space of a note's pitch" by the topological group $\mathbb{R}/\mathbb{Z}$.
+        In particular, we interpret any $x \in \mathbb{R}/\mathbb{Z}$ as the equivalence class of notes of $2^{(x + n)}$ Hz for all $n \in \mathbb{Z}$. <br> <br>
+        A "triad" is a set of three notes played together.
+        (A set of notes played together is often called a "chord".)
+        The order of the notes does not matter, although conventionally triads are written from least to greatest Hz.
+        Additionally, we consider the triads $\{x, y, z\}$ and $\{x + w, y + w, z + w\}$ to be the "same" chord for the purposes of music.
+        This is because we only care about the differences in Hz between each note played. <br> <br>
+        Therefore, one wonders: "what is the moduli space of triads?"
+        It turns out to be homeomorphic to a unit disk.
+    </p>
+    <h2>what is the homeomorphism, explicitly?</h2>
+    <p>
+        Let's parameterize the unit disk by $r$ and $\theta$ using polar coordinates. This is my explicit homeomorphism: <br> <br>
+        $f(r, \theta) = \{0, \frac{1 - r}{3}, \frac{2}{3} (1 - r) + \frac{\theta}{2 \pi} r\}$ <br> <br>
+        Note that when $r = 0$, the value of $\theta$ becomes irrelevant, ensuring this function is well-defined.
+        One can check that it's, in fact, a homeomorphism, although the details are messy and whether I write them up is a function of how much people care.
+        I should at least provide the inverse map: <br> <br>
+        $g(\{x, y, z\})_r = 1 - 3 \min(|x-y|, |x-z|, |y-z|)$ <br> <br>
+        (where $|x-y|$ is the shortest distance from $x$ to $y$.
+        I'm aware that, by default, this has no meaning in $\mathbb{R}/\mathbb{Z}$.
+        However, take our equivalence class representatives to be between $-\frac{1}{2}$ and $\frac{1}{2}$ for this to work.)<br> <br>
+        $g(\{0, x, y\})_\theta = \frac{y - 2x}{1 - 3x}$ <br> <br>
+        (where $2x \leq y < 1-x$ if we take $0 \leq x, y < 1$ as equivalence class representatives.) <br> <br>
+        Note that when $g(\{x, y, z\})_r = 0$, it's because $\{x, y, z\} = \{0, \frac{1}{3}, \frac{2}{3}\}$, which is the only edge case for $g_\theta$.
+        Also note that $\{0, x, 2x\} = \{0, x, 1-x\}$ via adding $x$ to the elements of the latter set.
+    </p>
   </body>
 </html>
