@@ -11,32 +11,52 @@
   <body style="font-family:monospace;font-size:1.5em;line-height:1.4">
     <h1>THE TRIADISK</h1>
     <canvas id="canvas" width="400" height="400"></canvas>
-    <p id="output"></p>
+    <pre id="output"></pre>
     volume
-    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0">
+    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0"> <br>
+    spooky mode (volume warning)
+    <input id="spooky" type="checkbox">
     <script>
+        // drawing the circle
         const cvs = document.getElementById('canvas');
         const ctx = cvs.getContext('2d');
-        ctx.arc(200, 200, 190, 0, 2 * Math.PI);
+        const CVS_HALF_WIDTH = cvs.width / 2;
+        const CVS_HALF_HEIGHT = cvs.height / 2;
+        const CIRCLE_RADIUS = 0.9 * Math.min(CVS_HALF_WIDTH, CVS_HALF_HEIGHT);
+        ctx.arc(CVS_HALF_WIDTH, CVS_HALF_HEIGHT, CIRCLE_RADIUS, 0, 2 * Math.PI);
         ctx.stroke();
 
+        // textual output
         const output = document.getElementById('output');
-        const base_gain_el = document.getElementById('base_gain');
 
+        // volume slider
+        const base_gain_el = document.getElementById('base_gain');
+        const spooky_el = document.getElementById('spooky');
+
+        // audio setup, shepard tones controlled by OCTAVE_OFFSETS
         const audio_ctx = new AudioContext();
-        const oscillators = Array(30);
-        const gain_nodes = Array(30);
+        const OCTAVE_OFFSETS = [-4, -3, -2, -1, 1, 2, 3, 4, 5];
+        const SHEPARD_DAMP = 0.8;
+        const oscillators = Array(3 + 3 * OCTAVE_OFFSETS.length);
+
+        // global state
         let is_playing = false;
         let prev_angle = 0;
         let root_note = 440;
 
         cvs.addEventListener('mousemove', event => {
+            // poll mouse coordinates
+            // -CVS_HALF_WIDTH < x < CVS_HALF_WIDTH
+            // -CVS_HALF_HEIGHT < y < CVS_HALF_HEIGHT
             const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left - 200;
-            const y = event.clientY - rect.top - 200;
-        
-            const distance = 1 - Math.sqrt(x ** 2 + y ** 2) / 190;
+            const x = event.clientX - rect.left - CVS_HALF_WIDTH;
+            const y = event.clientY - rect.top - CVS_HALF_HEIGHT;
+
+            // distance from the edge, positive is closer to the center of the disk
+            // 0 < distance < 1 within the disk itself
+            const distance = 1 - Math.sqrt(x ** 2 + y ** 2) / CIRCLE_RADIUS;
             if (distance < 0) {
+                // stop all audio when mouse leaves the disk
                 if (is_playing) {
                     for (let i = 0; i < oscillators.length; i++) {
                         oscillators[i].disconnect();
@@ -46,7 +66,10 @@
                 }
             }
             else {
+                // 0 < angle < 1
                 const angle = (Math.atan2(y, x) + Math.PI) / (2 * Math.PI);
+
+                // sleight of hand to "mod out" by transposing chords
                 if (is_playing) {
                     if (angle - prev_angle > 0.5) {
                         root_note *= 2 ** (1/3 * distance);
@@ -59,31 +82,51 @@
                 }
                 prev_angle = angle;
 
+                // pitches are stored as log_2 of their hz
                 let pitches = [0, 1/3 * distance, 2/3 * distance + (1 - distance) * angle];
                 let gains = [1, 1, 1];
-                output.innerText = 'distance: ' + distance + '\nangle: ' + angle
-                    + '\nratio 1: ' + 2 ** pitches[1] + '\nratio 2: ' + 2 ** pitches[2];
+                output.innerText =
+                    'mid pitch / bass pitch = ' + (2 ** pitches[1]).toFixed(4) + '\n' +
+                    'top pitch / bass pitch = ' + (2 ** pitches[2]).toFixed(4);
                 
-                const octave_offsets = [-4, -3, -2, -1, 1, 2, 3, 4, 5];
-                for (let i = 0; i < octave_offsets.length; i++) {
-                    const offset = octave_offsets[i];
+                // add shepard tones to the pure tones
+                for (let i = 0; i < OCTAVE_OFFSETS.length; i++) {
+                    const offset = OCTAVE_OFFSETS[i];
                     pitches = pitches.concat([pitches[0] + offset, pitches[1] + offset, pitches[2] + offset]);
-                    gains = gains.concat(Array(3).fill(0.8 ** Math.abs(offset)));
+                    gains = gains.concat(Array(3).fill(SHEPARD_DAMP ** Math.abs(offset)));
+
+                    // avoid clamping / remove some shepards for spooky
+                    for (let i = pitches.length - 3; i < pitches.length; i++) {
+                        if (root_note * 2 ** pitches[i] > 24000 || (Math.abs(offset) > 2 && spooky_el.checked)) {
+                            pitches[i] = 0;
+                            gains[i] = 0;
+                        } 
+                    }
                 }
 
+                // restart all audio when mouse enters the disk
                 if (!is_playing) {
                     for (let i = 0; i < oscillators.length; i++) {
                         oscillators[i] = audio_ctx.createOscillator();
 
-                        gain_nodes[i] = audio_ctx.createGain();
-                        gain_nodes[i].gain.setValueAtTime(base_gain_el.value * gains[i], audio_ctx.currentTime);
-                        oscillators[i].connect(gain_nodes[i]);
+                        if (spooky_el.checked) {
+                            if (gains[i] > 0) oscillators[i].connect(audio_ctx.destination);
+                        }
+                        else {
+                            const gain_node = audio_ctx.createGain();
+                            let gain = base_gain_el.value * gains[i];
+                            gain_node.gain.setValueAtTime(gain, audio_ctx.currentTime);
+                            
+                            oscillators[i].connect(gain_node);
+                            gain_node.connect(audio_ctx.destination);
+                        }
 
-                        gain_nodes[i].connect(audio_ctx.destination);
                         oscillators[i].start();
                     }
                     is_playing = true;
                 }
+
+                // update pitches
                 for (let i = 0; i < oscillators.length; i++) {
                     oscillators[i].frequency.setValueAtTime(root_note * 2 ** pitches[i], audio_ctx.currentTime);
                 }
