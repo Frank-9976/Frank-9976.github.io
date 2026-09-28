@@ -69,7 +69,13 @@
 
             // distance from the edge, positive is closer to the center of the disk
             // 0 < distance < 1 within the disk itself
-            const distance = 1 - Math.sqrt(x ** 2 + y ** 2) / CIRCLE_RADIUS;
+            let distance = 1 - Math.sqrt(x ** 2 + y ** 2) / CIRCLE_RADIUS;
+            
+            // wiggle room for the edge
+            if (distance < 0 && distance > -0.1 && is_playing) {
+                distance = 0;
+            }
+
             if (distance < 0) {
                 // stop all audio when mouse leaves the disk
                 if (is_playing) {
