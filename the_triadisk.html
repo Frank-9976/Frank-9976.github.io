@@ -71,6 +71,22 @@
             ctx.arc(CVS_HALF_WIDTH, CVS_HALF_HEIGHT, CIRCLE_RADIUS, 0, 2 * Math.PI);
             ctx.stroke();
 
+            //landmarks
+            const LANDMARKS = {
+                'major': [6/5, 8/5],
+                'minor': [6/5, 3/2],
+                'augmented': [5/4, 25/16],
+                'suspended': [9/8, 3/2],
+                'dim.': [6/5, 36/25],
+            }
+            for (let chord_name in LANDMARKS) {
+                const ratio_1 = LANDMARKS[chord_name][0];
+                const ratio_2 = LANDMARKS[chord_name][1];
+                const guiding_distance = 3 * Math.log2(ratio_1);
+                const guiding_angle = (Math.log2(ratio_2) - 2/3 * guiding_distance) / (1 - guiding_distance);
+                draw_guider(guiding_angle, guiding_distance, chord_name);
+            }
+
             if (!x || !y) return;
 
             // guiding lines
@@ -92,13 +108,25 @@
                 const guiding_distance = (ratio_2 - guiding_angle) / (2 / 3 - guiding_angle);
                 if (guiding_distance >= 0 && guiding_distance <= 1) draw_guider(guiding_angle, guiding_distance);
             }
-            function draw_guider(guiding_angle, guiding_distance) {
-                const guiding_x = CIRCLE_RADIUS * (1 - guiding_distance) * Math.cos(2 * Math.PI * guiding_angle - Math.PI);
-                const guiding_y = CIRCLE_RADIUS * (1 - guiding_distance) * Math.sin(2 * Math.PI * guiding_angle - Math.PI);
-                ctx.beginPath();
-                ctx.arc(guiding_x + CVS_HALF_WIDTH, guiding_y + CVS_HALF_HEIGHT, 2, 0, 2 * Math.PI);
-                ctx.fillStyle = 'black';
-                ctx.fill();
+            function draw_guider(guiding_angle, guiding_distance, name=undefined) {
+                const guiding_x = CIRCLE_RADIUS * (1 - guiding_distance) * Math.cos(2 * Math.PI * guiding_angle - Math.PI) + CVS_HALF_WIDTH;
+                const guiding_y = CIRCLE_RADIUS * (1 - guiding_distance) * Math.sin(2 * Math.PI * guiding_angle - Math.PI) + CVS_HALF_HEIGHT;
+                if (name) {
+                    ctx.beginPath();
+                    ctx.font = '10px Monospace'
+                    ctx.fillStyle = 'black';
+                    ctx.fillText(name, guiding_x + 2, guiding_y - 2);
+                    ctx.beginPath();
+                    ctx.arc(guiding_x, guiding_y, 2, 0, 2 * Math.PI);
+                    ctx.fillStyle = 'blue';
+                    ctx.fill();
+                }
+                else {
+                    ctx.beginPath();
+                    ctx.arc(guiding_x, guiding_y, 2, 0, 2 * Math.PI);
+                    ctx.fillStyle = 'black';
+                    ctx.fill();
+                }
             }
 
             // mouse cursor
