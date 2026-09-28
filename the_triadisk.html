@@ -61,6 +61,8 @@
 
         // i dont know why but my gut says to name it drawfn
         // arguments are mouse coordinates
+        const NUM_GUIDERS = 1000;
+        const GUIDER_CUTOFF = 1;
         function drawfn(x=undefined, y=undefined) {
             ctx.reset();
 
@@ -70,6 +72,34 @@
             ctx.stroke();
 
             if (!x || !y) return;
+
+            // guiding lines
+            // some copy-and-pasted code but bleh im too lazy to refactor
+            // just note this stuff is for the purely visual stuff
+            const distance = Math.max(1 - Math.sqrt(x ** 2 + y ** 2) / CIRCLE_RADIUS, 0);
+            const angle = (Math.atan2(y, x) + Math.PI) / (2 * Math.PI);
+            const ratio_1 = 1/3 * distance;
+            const ratio_2 = 2/3 * distance + (1 - distance) * angle;
+            for (let dd = 0; dd < NUM_GUIDERS; dd++) {
+                const guiding_distance = dd / NUM_GUIDERS;
+                if (Math.abs(guiding_distance - distance) > GUIDER_CUTOFF) continue;
+                const guiding_angle = angle;
+                draw_guider(guiding_angle, guiding_distance);
+            }
+            for (let aa = 0; aa < NUM_GUIDERS; aa++) {
+                const guiding_angle = aa / NUM_GUIDERS;
+                if (Math.abs(guiding_angle - angle) > GUIDER_CUTOFF) continue;
+                const guiding_distance = (ratio_2 - guiding_angle) / (2 / 3 - guiding_angle);
+                if (guiding_distance >= 0 && guiding_distance <= 1) draw_guider(guiding_angle, guiding_distance);
+            }
+            function draw_guider(guiding_angle, guiding_distance) {
+                const guiding_x = CIRCLE_RADIUS * (1 - guiding_distance) * Math.cos(2 * Math.PI * guiding_angle - Math.PI);
+                const guiding_y = CIRCLE_RADIUS * (1 - guiding_distance) * Math.sin(2 * Math.PI * guiding_angle - Math.PI);
+                ctx.beginPath();
+                ctx.arc(guiding_x + CVS_HALF_WIDTH, guiding_y + CVS_HALF_HEIGHT, 2, 0, 2 * Math.PI);
+                ctx.fillStyle = 'black';
+                ctx.fill();
+            }
 
             // mouse cursor
             ctx.beginPath();
