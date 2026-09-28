@@ -34,12 +34,12 @@
     <script>
         // drawing the circle
         const cvs = document.getElementById('canvas');
+        cvs.style.cursor = 'none';
         const ctx = cvs.getContext('2d');
         const CVS_HALF_WIDTH = cvs.width / 2;
         const CVS_HALF_HEIGHT = cvs.height / 2;
         const CIRCLE_RADIUS = 0.9 * Math.min(CVS_HALF_WIDTH, CVS_HALF_HEIGHT);
-        ctx.arc(CVS_HALF_WIDTH, CVS_HALF_HEIGHT, CIRCLE_RADIUS, 0, 2 * Math.PI);
-        ctx.stroke();
+        drawfn();
 
         // textual output
         const output = document.getElementById('output');
@@ -59,6 +59,25 @@
         let prev_angle = 0;
         let root_note = 440;
 
+        // i dont know why but my gut says to name it drawfn
+        // arguments are mouse coordinates
+        function drawfn(x=undefined, y=undefined) {
+            ctx.reset();
+
+            // the disk itself
+            ctx.beginPath();
+            ctx.arc(CVS_HALF_WIDTH, CVS_HALF_HEIGHT, CIRCLE_RADIUS, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            if (!x || !y) return;
+
+            // mouse cursor
+            ctx.beginPath();
+            ctx.arc(x + CVS_HALF_WIDTH, y + CVS_HALF_HEIGHT, 4, 0, 2 * Math.PI);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        }
+
         cvs.addEventListener('mousemove', event => {
             // poll mouse coordinates
             // -CVS_HALF_WIDTH < x < CVS_HALF_WIDTH
@@ -66,6 +85,7 @@
             const rect = canvas.getBoundingClientRect();
             const x = event.clientX - rect.left - CVS_HALF_WIDTH;
             const y = event.clientY - rect.top - CVS_HALF_HEIGHT;
+            drawfn(x, y);
 
             // distance from the edge, positive is closer to the center of the disk
             // 0 < distance < 1 within the disk itself
