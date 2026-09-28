@@ -28,7 +28,7 @@
     <canvas id="canvas" width="400" height="400"></canvas>
     <pre id="output"></pre>
     volume
-    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0.005"> <br>
+    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0"> <br>
     spooky mode (volume warning)
     <input id="spooky" type="checkbox"> <br> <br>
     click to enable sound <br>
@@ -89,7 +89,7 @@
                 draw_guider(guiding_angle, guiding_distance, chord_name);
             }
 
-            if (!x || !y) return;
+            if (x == undefined || y == undefined) return;
 
             // guiding lines
             // some copy-and-pasted code but bleh im too lazy to refactor
