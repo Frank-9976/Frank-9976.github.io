@@ -28,9 +28,12 @@
     <canvas id="canvas" width="400" height="400"></canvas>
     <pre id="output"></pre>
     volume
-    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0"> <br>
+    <input id="base_gain" type="range" min="0" max="0.05" step="0.001" value="0.005"> <br>
     spooky mode (volume warning)
-    <input id="spooky" type="checkbox">
+    <input id="spooky" type="checkbox"> <br> <br>
+    click to enable sound <br>
+    chords are labeled by 5-limit just intonation <br>
+    guiding lines denote how to move without changing one of the ratios
     <script>
         // drawing the circle
         const cvs = document.getElementById('canvas');
@@ -137,6 +140,7 @@
             ctx.fill();
         }
 
+        const WIGGLE_ROOM = 0.3;
         cvs.addEventListener('mousemove', event => {
             // poll mouse coordinates
             // -CVS_HALF_WIDTH < x < CVS_HALF_WIDTH
@@ -151,7 +155,7 @@
             let distance = 1 - Math.sqrt(x ** 2 + y ** 2) / CIRCLE_RADIUS;
             
             // wiggle room for the edge
-            if (distance < 0 && distance > -0.1 && is_playing) {
+            if (distance < 0 && distance > -WIGGLE_ROOM && is_playing) {
                 distance = 0;
             }
 
